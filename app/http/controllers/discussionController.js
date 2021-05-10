@@ -175,7 +175,7 @@ function discussionController(){
                             message: 'Success',
                             question : newQues
                         });*/
-                        res.redirect('/getQuestion');
+                        res.redirect('/api/getQuestion');
                       }
                   })
 
@@ -237,7 +237,7 @@ function discussionController(){
                                 message: 'Success',
                                 question : doc
                             });*/
-                            res.redirect('/question/'+qId);
+                            res.redirect('/api/question/'+qId);
                           }
 
                     })
@@ -268,7 +268,7 @@ function discussionController(){
                             message: 'Success',
                             article : doc
                         });*/
-                        res.redirect('/question/'+qId);
+                        res.redirect('/api/question/'+qId);
                     }
                 });
 
@@ -298,7 +298,7 @@ function discussionController(){
                             message: 'Success',
                             article : doc
                         });*/
-                        res.redirect('/question/'+qId);
+                        res.redirect('/api/question/'+qId);
                     }
                 });
 
@@ -339,7 +339,7 @@ function discussionController(){
                                 message: 'Success',
                                 article : doc
                             });*/
-                            res.redirect('/question/'+req.body.qId);
+                            res.redirect('/api/question/'+req.body.qId);
                         }
                         });
                     } catch (error) {

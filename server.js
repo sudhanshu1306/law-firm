@@ -8,6 +8,7 @@ const cors=require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const multer =require('multer');
+const path=require('path');
 
 const session = require('express-session');
 const flash = require('express-flash');
@@ -23,6 +24,7 @@ connection.once('open', ()=>{
 }).catch(err =>{
     console.log('Connection failed..');
 })
+
 
 //Session Store
 let mongoStore = new MongoDBStore({
@@ -72,7 +74,8 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging')
 app.use(flash());
 
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static(__dirname+'/internship/build'));
+app.use("/",express.static("public"));
 app.use("/article",express.static("public"));
 app.use("/question",express.static("public"));
 app.use("/viewJob",express.static("public"));

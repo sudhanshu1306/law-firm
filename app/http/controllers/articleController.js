@@ -58,7 +58,7 @@ function articleController(){
                         message: 'Success',
                         user : doc
                     });*/
-                    res.redirect('/articles');
+                    res.redirect('/api/articles');
                    })
                 } catch (error) {
                     return res.status(500).json({
@@ -99,7 +99,7 @@ function articleController(){
                             message: 'Success',
                             article : doc
                         });*/
-                        res.redirect('/articles');
+                        res.redirect('/api/articles');
                     }
 
                 })
@@ -221,7 +221,7 @@ function articleController(){
                             message: 'Success',
                             article : doc
                         });*/
-                        res.redirect('/articles');
+                        res.redirect('/api/articles');
                     });
                 } catch (error) {
                     return res.status(500).json({
@@ -250,7 +250,7 @@ function articleController(){
                                 message: 'Success',
                                 comments : doc
                             });*/
-                            res.redirect('/article/'+req.body.articleId);
+                            res.redirect('/api/article/'+req.body.articleId);
                         }
 
                     })
@@ -311,7 +311,7 @@ function articleController(){
                             message: 'Success',
                             article : doc
                         });*/
-                        res.redirect('/articles');
+                        res.redirect('/api/articles');
                     }
                     });
                 } catch (error) {

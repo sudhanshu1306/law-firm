@@ -93,7 +93,7 @@ function employerController(){
                         message: 'Success',
                         employer : doc
                     });*/
-                    res.redirect('/jobs');
+                    res.redirect('/api/jobs');
                 });
 
             } catch (error) {
@@ -223,7 +223,7 @@ function employerController(){
                             else{
                                 docc.jobs.push(jId);
                             await docc.save();
-                            res.redirect('/jobs');
+                            res.redirect('/api/jobs');
                             }
 
                 })

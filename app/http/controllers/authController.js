@@ -78,7 +78,7 @@ function authController(){
             //         req.flash('error', 'Email already exists, Try another!')
             //         req.flash('name', name);
             //         req.flash('email', email);
-            //       res.redirect('/register');
+            //       res.redirect('/api/register');
             //     }
             // })
             const userx = await User.findOne({email: email});
@@ -119,7 +119,7 @@ function authController(){
                 message: 'Successfully logouted',
                 account: up
             })*/
-            res.redirect('./login');
+            res.redirect('./api/login');
         }
     }
 }

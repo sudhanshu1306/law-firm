@@ -58,7 +58,7 @@ function courseAuthorController(){
                     }
                     doc.courses.push(newCourse._id);
                     doc.save();
-                    res.redirect('/getcourse');
+                    res.redirect('/api/getcourse');
                   })
                /* return res.status(200).json({
                     message: 'Success',
@@ -146,7 +146,7 @@ function courseAuthorController(){
                             message: 'Success',
                             course : doc
                         });*/
-                        res.redirect('/getcourse');
+                        res.redirect('/api/getcourse');
                     }
                 })
             } catch (error) {
@@ -289,7 +289,7 @@ function courseAuthorController(){
                         })
 
                     }
-                    res.redirect('/getcourse');
+                    res.redirect('/api/getcourse');
                 })
             }
         }

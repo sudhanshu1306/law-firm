@@ -30,7 +30,7 @@ function adminController(){
                     console.log(err);
                 }
                 else{
-                    res.redirect('/adminJobs');
+                    res.redirect('/api/adminJobs');
                 }
             });
         }
@@ -40,7 +40,7 @@ function adminController(){
                     console.log(err);
                 }
                 else{
-                    res.redirect('/adminJobs');
+                    res.redirect('/api/adminJobs');
                 }
             })
         }
@@ -80,7 +80,7 @@ function adminController(){
                     console.log(err);
                 }
                 else{
-                res.redirect('adminVideos');
+                res.redirect('/api/adminVideos');
                 }
             });
         }
@@ -90,7 +90,7 @@ function adminController(){
                     console.log(err);
                 }
                 else{
-                    res.redirect('adminVideos');
+                    res.redirect('/api/adminVideos');
                 }
             })
         }
@@ -121,7 +121,7 @@ function adminController(){
                     console.log(err);
                 }
                 else{
-                    res.redirect('/adminArticles');
+                    res.redirect('/api/adminArticles');
                 }
             });
         }
@@ -131,7 +131,7 @@ function adminController(){
                     console.log(err);
                 }
                 else{
-                    res.redirect('/adminArticles');
+                    res.redirect('/api/adminArticles');
                 }
             })
         }

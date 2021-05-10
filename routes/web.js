@@ -18,15 +18,15 @@ const Article = require('../app/model/article');
 
 function initRoute(app) {
 
-  app.get('/',function(req,res){
-    res.redirect('/jobs');
+  app.get('/api/',function(req,res){
+    res.redirect('/api/jobs');
   })
 
-  app.get('/login', function(req,res){
+  app.get('/api/login', function(req,res){
       res.json({success:true,message:"welcome to login"});
   })
 
-    app.post('/login', authController().postLogin)
+    app.post('/api/login', authController().postLogin)
 
     var storage = multer.diskStorage({
         destination: function (req, file, cb) {
@@ -80,74 +80,74 @@ function initRoute(app) {
 
       const vd =uploadVd.single('video');
 
-      app.get('/register',async function(req,res){
+      app.get('/api/register',async function(req,res){
         res.render('signup');
       })
-    app.post('/register',dp, authController().postRegister)
+    app.post('/api/register',dp, authController().postRegister)
 
-    app.post('/logout', authController().logout);
+    app.post('/api/logout', authController().logout);
 
-    app.get('/jobs',employerController().getJobs)
+    app.get('/api/jobs',employerController().getJobs)
 
-    app.post('/jobsParti',auth,employerController().getJobsPart)
+    app.post('/api/jobsParti',auth,employerController().getJobsPart)
 
-    app.post('/jobApplicant',auth,employer,employerController().getJobApplicant)
+    app.post('/api/jobApplicant',auth,employer,employerController().getJobApplicant)
 
 
-    app.post('/jobs',auth,employer,employerController().postJobs)
+    app.post('/api/jobs',auth,employer,employerController().postJobs)
 
-    app.post('/applyJobs',auth,notEmployer,employerController().applyJob)
+    app.post('/api/applyJobs',auth,notEmployer,employerController().applyJob)
 
-    app.post('/editJob',auth,employerController().editJobRequest);
+    app.post('/api/editJob',auth,employerController().editJobRequest);
 
-    app.post('/editJobForm',auth,employerController().editJob)
+    app.post('/api/editJobForm',auth,employerController().editJob)
 
-    app.get('/viewJob/:id',auth,employerController().viewJob);
+    app.get('/api/viewJob/:id',auth,employerController().viewJob);
 
-    app.get('/editUser',auth,async function(req,res){
+    app.get('/api/editUser',auth,async function(req,res){
        res.json({
          success:true,
          user : req.user
        })
     })
 
-    app.post('/editUser',auth,dp,employerController().editUser)
+    app.post('/api/editUser',auth,dp,employerController().editUser)
 
-    app.post('/deleteUser',auth,employerController().deleteUser)
+    app.post('/api/deleteUser',auth,employerController().deleteUser)
 
-    app.get('/adminJobs',admin,adminController().getAdminJobs)
+    app.get('/api/adminJobs',admin,adminController().getAdminJobs)
 
-    app.post('/adminJobs',admin,adminController().postAdminJobs)
+    app.post('/api/adminJobs',admin,adminController().postAdminJobs)
 
-    app.get('/adminArticles',admin,adminController().getAdminArticle)
+    app.get('/api/adminArticles',admin,adminController().getAdminArticle)
 
-    app.post('/adminArticles',admin,adminController().postAdminArticle)
+    app.post('/api/adminArticles',admin,adminController().postAdminArticle)
 
-    app.get('/adminVideos',admin,adminController().getAdminVideos)
+    app.get('/api/adminVideos',admin,adminController().getAdminVideos)
 
-    app.post('/adminVideos',admin,adminController().postAdminVideos)
+    app.post('/api/adminVideos',admin,adminController().postAdminVideos)
 
 
-    app.get('/articles',articleController().getArticle)
+    app.get('/api/articles',articleController().getArticle)
 
-    app.post('/article',auth,articleController().postArticle)
-    app.get('/article/:id',auth,articleController().individualArticle)
+    app.post('/api/article',auth,articleController().postArticle)
+    app.get('/api/article/:id',auth,articleController().individualArticle)
 
-    app.post('/likeArticle',auth,articleController().likeArticle)
+    app.post('/api/likeArticle',auth,articleController().likeArticle)
 
-    app.get('/likedUsers/:articleId',auth,articleController().likedUsers)
+    app.get('/api/likedUsers/:articleId',auth,articleController().likedUsers)
 
-    app.post('/getComment',auth,articleController().getComment)
+    app.post('/api/getComment',auth,articleController().getComment)
 
-    app.post('/postComment',auth,articleController().postComment)
+    app.post('/api/postComment',auth,articleController().postComment)
 
-    app.post('/likeComment',auth,articleController().likeComment)
+    app.post('/api/likeComment',auth,articleController().likeComment)
 
-    app.post('/getReply',auth,articleController().getReply)
+    app.post('/api/getReply',auth,articleController().getReply)
 
-    app.post('/postReply',auth,articleController().postReply)
+    app.post('/api/postReply',auth,articleController().postReply)
 
-    app.post('/editArticle',auth,async function(req,res){
+    app.post('/api/editArticle',auth,async function(req,res){
        let id = req.body.id;
        let article = await Article.findById(id);
         res.json({
@@ -156,79 +156,79 @@ function initRoute(app) {
         })
     })
 
-    app.get('/viewArticle/:id',auth,articleController().viewArticle)
+    app.get('/api/viewArticle/:id',auth,articleController().viewArticle)
 
-    app.post('/editArticleForm',auth,articleController().editArticle)
+    app.post('/api/editArticleForm',auth,articleController().editArticle)
 
-   // app.post('/likeReply',auth,articleController().likeReply)
+   // app.post('/api/likeReply',auth,articleController().likeReply)
 
-    app.get('/getcourse',courseAuthorController().getCourse)
+    app.get('/api/getcourse',courseAuthorController().getCourse)
 
-    app.post('/postCourse',auth,notStudent,dp,courseAuthorController().postCourse)
+    app.post('/api/postCourse',auth,notStudent,dp,courseAuthorController().postCourse)
 
-    app.post('/getLessons',auth,courseAuthorController().getLessons)
+    app.post('/api/getLessons',auth,courseAuthorController().getLessons)
 
-    app.post('/postLessons',auth,notStudent,courseAuthorController().postLessons)
+    app.post('/api/postLessons',auth,notStudent,courseAuthorController().postLessons)
 
-    app.post('/postVideo',auth,notStudent,vd,courseAuthorController().postVideo)
+    app.post('/api/postVideo',auth,notStudent,vd,courseAuthorController().postVideo)
 
-    app.get('/getVideo/:id',auth,courseAuthorController().getVideo)
+    app.get('/api/getVideo/:id',auth,courseAuthorController().getVideo)
 
-    app.get('/viewCourse/:id',auth,courseAuthorController().viewCourse)
+    app.get('/api/viewCourse/:id',auth,courseAuthorController().viewCourse)
 
-    app.post('/getVideoEJS',auth,registered,async function(req,res){
+    app.post('/api/getVideoEJS',auth,registered,async function(req,res){
         res.json({
           success:true,
           id : req.body.id
         });
     })
 
-    app.post('/registerForCourse',auth,student,courseAuthorController().registerForCourse)
+    app.post('/api/registerForCourse',auth,student,courseAuthorController().registerForCourse)
 
-    app.get('/getQuestion',discussionController().getQuestion)
+    app.get('/api/getQuestion',discussionController().getQuestion)
 
-    app.post('/postQuestion',auth,qa,discussionController().postQuestion)
+    app.post('/api/postQuestion',auth,qa,discussionController().postQuestion)
 
-    app.post('/getSpecificQuestion',discussionController().getPartiQuestion)
+    app.post('/api/getSpecificQuestion',discussionController().getPartiQuestion)
 
-    app.get('/question/:id',discussionController().getPartialQuestion)
+    app.get('/api/question/:id',discussionController().getPartialQuestion)
 
-    app.post('/getAnswer',discussionController().getAnswer)
+    app.post('/api/getAnswer',discussionController().getAnswer)
 
-    app.post('/postAnswer',auth,qa,discussionController().postAnswer)
+    app.post('/api/postAnswer',auth,qa,discussionController().postAnswer)
 
-    app.post('/likeQuestion',auth,discussionController().likeQuestion)
+    app.post('/api/likeQuestion',auth,discussionController().likeQuestion)
 
-    app.post('/likeAnswer',auth,discussionController().likeAnswer)
+    app.post('/api/likeAnswer',auth,discussionController().likeAnswer)
 
-    app.post('/postAnswerReply',auth,discussionController().postReply)
+    app.post('/api/postAnswerReply',auth,discussionController().postReply)
 
-    app.post('/viewProfile',auth,employerController().viewUser)
+    app.post('/api/viewProfile',auth,employerController().viewUser)
 
     //changed code by me
-    app.get("/viewAddArticle",auth,(req,res)=>{
+    app.get("/api/viewAddArticle",auth,(req,res)=>{
       res.render("addArticle");
     });
-    app.get("/viewAddJob",auth,(req,res)=>{
+    app.get("/api/viewAddJob",auth,(req,res)=>{
       res.render("addJob");
     });
-    app.get("/viewAddCourse",auth,(req,res)=>{
+    app.get("/api/viewAddCourse",auth,(req,res)=>{
       res.render("addCourse");
     })
-    app.get("/viewAddLesson/:id",auth,(req,res)=>{
+    app.get("/api/viewAddLesson/:id",auth,(req,res)=>{
       res.json({
         success:true,
         id:req.params.id
       });
     })
 
-    app.get("/viewAddVideo/:id",auth,(req,res)=>{
+    app.get("/api/viewAddVideo/:id",auth,(req,res)=>{
       res.json({
         success:true,
         id:req.params.id
       });
     })
-    app.get("/viewAddQuestion",auth,(req,res)=>{
+    app.get("/api/viewAddQuestion",auth,(req,res)=>{
       res.render("addQuestion");
     });
    app.get("/checkLogin",(req,res)=>{
@@ -236,5 +236,10 @@ function initRoute(app) {
        success:req.isAuthenticated(),
      })
    });
+   app.get("/api/checkLogin",(req,res)=>{
+    res.json({
+      success:req.isAuthenticated(),
+    })
+  });
 }
 module.exports = initRoute;
