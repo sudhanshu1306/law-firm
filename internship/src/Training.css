@@ -1,0 +1,101 @@
+.training {
+  height: 100%;
+}
+.trainingHeader {
+  display: flex;
+  align-items: center;
+  padding: 30px 60px;
+  justify-content: space-between;
+}
+.trainingHeader-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.trainingHeader-right {
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  color: rgb(49, 52, 21);
+  cursor: pointer;
+}
+
+.trainingHeader-left > h1 {
+  font-size: 30px;
+  font-weight: 500;
+  color: #4c2e7b;
+}
+.trainingHeader-left > p {
+  font-size: 18px;
+  font-weight: 300;
+}
+.trainingHeader-right > p {
+  font-size: 25px;
+  color: rgb(49, 52, 21);
+  font-weight: 300;
+}
+
+.add {
+  color: rgb(49, 52, 21) !important;
+  font-size: 25px;
+  margin-left: 20px;
+}
+.courses {
+  width: -webkit-fill-available;
+  display: flex;
+  padding: 40px 30px;
+  flex-wrap: wrap;
+}
+.inputfile::-webkit-file-upload-button {
+  visibility: hidden !important;
+}
+.inputfile::before {
+  content: "📎 choose files";
+  display: inline-block;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  /* -webkit-user-select: none; */
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 13px;
+  color: rgb(87, 116, 60);
+}
+.inputfile:hover::before {
+  border-color: rgb(87, 116, 60) !important;
+}
+.inputfile:active::before {
+  background: -webkit-linear-gradient(top, #bfffb3, #adfff4) !important;
+}
+.formModal > input {
+  outline-width: 0;
+  border: 2px solid #ddffbc;
+  border-radius: 10px;
+  padding: 10px 20px;
+  width: 400px;
+  margin-right: 30px;
+  width: -webkit-fill-available;
+}
+.formModal > textarea {
+  outline-width: 0;
+  border: 2px solid #ddffbc;
+  border-radius: 10px;
+  padding: 10px 20px;
+  width: 400px;
+  margin-right: 30px;
+  width: -webkit-fill-available;
+}
+.formModal > button {
+  padding: 6px 6px;
+  border-radius: 50px;
+  color: white;
+  background-color: rgb(49, 52, 21) !important;
+  border: 2px solid rgb(49, 52, 21) !important;
+  width: 105px;
+  outline-width: 0;
+  cursor: pointer;
+  margin-left: auto;
+  margin-top: 40px;
+}
+

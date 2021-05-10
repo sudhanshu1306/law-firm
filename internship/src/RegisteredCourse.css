@@ -1,0 +1,15 @@
+.registeredCourse {
+  width: 80vw;
+  height: 100vh;
+  overflow: scroll;
+}
+.registeredCourses {
+  width: -webkit-fill-available;
+  display: flex;
+  padding: 40px 30px;
+  flex-wrap: wrap;
+}
+.registeredCourse > h1 {
+  font-weight: 400;
+  font-size: 20px;
+}

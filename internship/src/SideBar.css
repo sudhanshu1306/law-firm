@@ -1,0 +1,102 @@
+.sideBar {
+  width: 20vw;
+  background-color: rgb(19, 19, 20);
+  height: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 10px;
+  justify-content: space-between;
+  border-radius: 20px;
+  box-shadow: 0 2px 15px rgb(0 0 0 / 12%);
+  margin: 10px 20px;
+  overflow: hidden;
+}
+.topProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.StudentInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+.StudentInfo > h3 {
+  color: yellow;
+  font-size: 19px;
+  font-weight: 400;
+  margin: 15px;
+}
+.StudentInfo > p {
+  font-size: 14px;
+  font-weight: 300;
+}
+.profileImage {
+  width: 60px !important;
+  height: 60px !important;
+}
+.accountOptions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: white;
+  text-decoration: none !important;
+}
+
+.sideMenu {
+  background-color: rgba(255, 255, 255, 0);
+  outline-width: 0;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 10px 30px;
+  cursor: pointer;
+  width: 275px;
+  text-decoration: none !important;
+}
+.sideMenu:hover {
+  width: 275px;
+  background-color: #485461;
+  background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
+  border-radius: 20px;
+  text-decoration: none !important;
+  border: 1px solid white;
+}
+
+.active {
+  background-color: #485461;
+  background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
+  border-radius: 20px;
+  text-decoration: none !important;
+  border: 1px solid white;
+  text-decoration: black !important;
+  width: 275px;
+}
+.dash {
+  margin-right: 15px;
+}
+
+.editProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 300;
+}
+.editProfile > button {
+  padding: 3px 6px;
+  margin-top: 10px;
+  border-radius: 10px;
+  color: white;
+  background-color: rgba(255, 255, 255, 0);
+  border: 2px solid white;
+  width: 200px;
+  outline-width: 0;
+  cursor: pointer;
+}
+.anchor {
+  text-decoration: none !important;
+}

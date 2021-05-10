@@ -1,0 +1,90 @@
+.employerAccount > h3 {
+  font-size: 30px;
+  font-weight: 300;
+  text-align: center;
+}
+.employerAccount-Header {
+  display: flex;
+  margin: 10vh 30px;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 34vh;
+  background-image: url("./assets//backgroun-4.jpg");
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0 8px 13px rgb(72 72 72);
+}
+.numbers {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  width: 70px;
+  padding: 15px;
+  border-radius: 20px;
+  background-color: #f8ceec;
+  background-image: linear-gradient(315deg, #f8ceec 0%, #a88beb 74%);
+
+  margin: 20px;
+}
+.employerAccount-HeaderLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: -webkit-fill-avaialable;
+}
+
+.employerAccount-HeaderRight > h3 {
+  font-size: 40px;
+  font-weight: 400;
+}
+.profileImage1 {
+  width: 100px !important;
+  height: 100px !important;
+  border: rgb(36, 36, 36) 3px solid;
+  box-shadow: 0 8px 13px rgb(4 4 4);
+}
+.count > h4 {
+  font-size: 30px;
+  font-weight: 500;
+  color: linear-gradient(315deg, #ffac81 0%, #ff928b 74%);
+  margin: 0 !important;
+}
+.count > p {
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+}
+.employerAccount-bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  width: -webkit-fill-available;
+}
+.hiredCandidates {
+  flex: 0.5;
+  border-right: 1px solid gray;
+  padding: 20px;
+}
+.hiredCandidates > h3 {
+  padding: 10px;
+  font-weight: 500;
+  font-size: 25px;
+}
+.jobPosts {
+  flex: 0.5;
+  padding: 20px;
+}
+.jobPosts > h3 {
+  padding: 10px;
+  font-weight: 500;
+  font-size: 25px;
+}

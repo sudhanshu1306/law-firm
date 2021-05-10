@@ -1,0 +1,28 @@
+.employerHeader {
+  height: 8vh;
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 15px;
+  background-color: #ecf5e9;
+  width: -webkit-fill-available;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+.employerHeaderLeft {
+  color: #fb743e;
+  font-size: 15px;
+  font-weight: 200 !important;
+}
+.brandName {
+text-decoration: none;
+}
+.brandName > h2 {
+  color: #fb743e;
+  font-size: 18px;
+  font-weight: 200 !important;
+  
+}

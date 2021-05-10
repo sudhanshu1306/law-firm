@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600&display=swap");
+.selectionCard {
+  font-family: "Poppins", sans-serif !important;
+  border-top: 1px solid #383e56;
+  padding: 20px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: -webkit-fill-available;
+  height: fit-content;
+}
+
+.selectionCard-header {
+  display: flex;
+  align-items: center;
+  width: -webkit-fill-available;
+  justify-content: space-between;
+}
+.selectionCard-headerLeft > h3 {
+  color: rgb(56, 56, 56);
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.selectionCard-headerLeft > h3 > span {
+  color: rgb(83, 83, 83);
+  font-size: 10px;
+  font-weight: 300;
+}
+.selectionCard-headerLeft > p {
+  color: rgb(56, 56, 56);
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+.expectations > p {
+  display: flex;
+  font-size: 13px;
+  align-items: center;
+}
+.selectionCard-headerRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.selectionCard-headerRight > p {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 300;
+  margin-bottom: 8px;
+}
+.selects {
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  color: #fb743e;
+  margin-right: 10px;
+}
+.list {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  margin-bottom: 8px;
+}
+.view {
+  background-color: white;
+  border: 1px solid #fb743e;
+  outline-width: 0;
+  color: #383e56;
+  padding: 5px 10px;
+  font-weight: 500;
+  font-size: 10px;
+  border-radius: 8px;
+  margin-right: 10px;
+  cursor: pointer;
+}

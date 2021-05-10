@@ -1,0 +1,73 @@
+.lecture {
+  margin-top: 8vh;
+  width: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.lectureTop {
+  width: -webkit-fill-available;
+  border-bottom: 1px solid rgb(15, 15, 15);
+  padding: 10px 20px;
+}
+.link3 {
+  font-size: 20px;
+  font-weight: 400;
+  color: rgb(0, 66, 207);
+  text-decoration: none;
+}
+.link5 {
+  font-size: 20px;
+  font-weight: 400;
+  color: rgb(43, 43, 43);
+  text-decoration: none;
+}
+.lectureBottom {
+  width: -webkit-fill-available;
+  display: flex;
+  align-items: center;
+}
+.lectureLeft {
+  flex: 0.7;
+}
+.lectureLeft > h1 {
+  font-size: 26px;
+  font-weight: 400;
+  color: rgb(65, 78, 46);
+  width: -webkit-fill-available;
+  margin: 5px 30px;
+}
+.lectureRight {
+  flex: 0.3;
+  border: 1px solid rgb(74, 92, 46);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  height: 74vh;
+  margin-right: 20px;
+  overflow-y: scroll;
+}
+.lectureRight > h3 {
+  font-size: 20px;
+  font-weight: 400;
+  color: rgb(65, 78, 46);
+  margin-bottom: 20px;
+}
+.lectureRight > p {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgb(36, 36, 36);
+}
+.player {
+  margin: 30px;
+  width: -webkit-fill-available !important;
+}
+.descImg {
+  background-image: url("./assets/description.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 110px;
+  width: -webkit-fill-available;
+}

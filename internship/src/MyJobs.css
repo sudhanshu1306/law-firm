@@ -1,0 +1,9 @@
+.myJobs {
+  width: 80vw;
+  height: 100vh;
+  overflow: scroll;
+}
+.myJobs > h1 {
+  font-size: 30px !important;
+  font-weight: 400 !important;
+}

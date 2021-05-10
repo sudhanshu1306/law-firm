@@ -1,0 +1,43 @@
+.lessons {
+  padding: 0 50px;
+  border: 1px solid #52734d;
+  margin: 12vh 50px 10px;
+  width: -webkit-fill-available;
+  min-height: 80vh;
+}
+.lessonsHeader {
+  width: -webkit-fill-available;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+.lessonsHeader > h3 {
+  font-size: 20px;
+  font-weight: 400;
+}
+.lectures {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #52734d;
+  margin: 5px 0;
+  padding: 5px 30px;
+}
+.play {
+  font-size: 28px !important;
+  margin: 0 20px !important;
+  color: #52734d !important;
+}
+.link4 > button {
+  padding: 3px 6px;
+  border-radius: 50px;
+  color: white;
+  background-color: rgb(49, 52, 21) !important;
+  border: 2px solid rgb(49, 52, 21) !important;
+  width: 86px;
+  outline-width: 0;
+  cursor: pointer;
+  margin-left: auto;
+}

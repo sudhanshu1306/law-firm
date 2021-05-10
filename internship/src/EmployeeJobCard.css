@@ -1,0 +1,119 @@
+.employeeJobCard {
+  width: 100%;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
+  margin: 30px;
+  border-radius: 15px;
+  height: 222px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.jobCardContent {
+  height: 100%;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.jobCardContent > h3 {
+  font-size: 15px;
+  font-weight: 500;
+  color: #3f51b5;
+}
+.jobCardContent > h4 {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgb(42, 43, 42);
+}
+.employeeJobCard-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+}
+.salary {
+  margin-right: 90px;
+}
+.descriptionContent {
+  height: 21px;
+  overflow: hidden;
+}
+.descriptionContent > p {
+  margin: 5px 0;
+  font-size: 12px;
+  font-weight: 300;
+  color: darkslategrey;
+}
+.employeeJobCard-bottom {
+  background-color: #ecf5e9;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  padding-left: 70%;
+}
+.employeeJobCard-bottom > button {
+  border: 2px solid #1b1a17;
+  border-radius: 5px;
+  background-color: white;
+  color: #1b1a17;
+  padding: 3px 20px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.employeeJobCard-bottom > button:hover {
+  background-color: whitesmoke;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
+}
+.employeeJobCard-top > p {
+  display: flex;
+  font-size: 13px;
+
+  align-items: center;
+}
+.jobCardContent1 {
+  height: 240px;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.jobRequirement {
+  height: 100%;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.jobRequirement > p {
+  font-size: 20px;
+  font-weight: 400;
+  color: rgb(42, 43, 42);
+}
+.jobCardContent1 > h3 {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1b1a17;
+}
+.jobCardContent1 > h4 {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgb(42, 43, 42);
+}
+.jobRequirement > ul > li {
+  color: gray;
+  font-size: 15px;
+  margin: 5px 0;
+}
+.jobRequirement > ul > li::marker {
+  color: red !important;
+}
+.location1 {
+  color: #ff4747 !important;
+}
+.work1 {
+  color: #3f51b5 !important;
+}
+.money1 {
+  color: green !important;
+}

@@ -1,0 +1,16 @@
+.footer {
+  background-color: #0f111a;
+  position: relative;
+  top: 30px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 20px 30px;
+  height: 40vh;
+  color: #feffde;
+  width: -webkit-fill-available;
+}
+h4 {
+  font-weight: 300;
+  margin: 5px;
+}

@@ -1,0 +1,28 @@
+.cardInAccnt {
+  background-color: #ffffff;
+  box-shadow: rgb(31 31 31 / 12%) 0px 1px 6px, rgb(31 31 31 / 12%) 0px 1px 4px;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 20px;
+  width: 180px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cardInAccnt > h3 {
+  font-size: 19px;
+  font-weight: 400;
+}
+.cardInAccnt > button {
+  padding: 3px 6px;
+  margin-top: 10px;
+  border-radius: 50px;
+  color: white;
+  background-color: rgb(49, 52, 21) !important;
+  border: 2px solid rgb(49, 52, 21) !important;
+  width: 86px;
+  outline-width: 0;
+  cursor: pointer;
+}

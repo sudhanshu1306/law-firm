@@ -1,0 +1,79 @@
+.applications {
+  overflow-y: hidden;
+  height: 100vh;
+  background-color: #eff7e1;
+}
+.applicationsHeader {
+  display: flex;
+  align-items: center;
+  height: 10vh;
+}
+.applicationsHeader > h1 {
+  font-size: 30px;
+  font-weight: 300;
+  margin-left: 20px;
+  margin: 25px;
+}
+.applicationsHeader-right {
+  display: flex;
+  align-items: center;
+}
+.applicationsbottom {
+  display: flex;
+  height: 72vh;
+  align-items: baseline;
+}
+.applicationsbottom-left {
+  background-color: #214151;
+  flex: 0.2;
+  height: 72vh;
+  color: white;
+  height: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px;
+}
+.applicationsbottom-right {
+  padding: 0 30px;
+  flex: 0.8;
+  height: 72vh;
+  width: -webkit-fill-available;
+  overflow-y: scroll;
+}
+.leftHeader > input {
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 2px solid #a2d0c1;
+  outline-width: 0;
+  width: -webkit-fill-available;
+}
+.candidateSearch1 {
+  position: relative;
+  top: 26px;
+  background-color: #9fb8ad;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 84%;
+  margin: 30px auto;
+  padding: 4px 4px;
+  border-radius: 50px;
+}
+.candidateSearch1 > button {
+  border-radius: 50px;
+  padding: 10px 20px;
+  color: #ffffff;
+  font-weight: 500;
+  background-color: #fb743e;
+  border: 2px solid #c5d7bd;
+  width: 196px;
+  outline-width: 0;
+  cursor: pointer;
+  transition: 1.5s ease-in-out;
+}
+.white > label {
+  color: white;
+}

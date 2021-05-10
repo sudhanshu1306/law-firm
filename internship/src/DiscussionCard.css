@@ -1,0 +1,147 @@
+.discussionCard {
+  width: 90%;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
+  margin: 30px;
+  border-radius: 15px;
+  height: 378px;
+  overflow: hidden;
+}
+.discussionCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+.discussionCardContent {
+  width: -webkit-fill-available;
+  height: 70px;
+  padding: 5px 20px;
+  overflow: hidden;
+}
+
+.heart {
+  color: red !important;
+  font-size: 20px !important;
+  margin-right: 5px;
+}
+.discussionCardComments > p {
+  width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.readMore {
+  color: blue;
+  font-size: 15px;
+  font-weight: 400;
+  cursor: pointer;
+  text-decoration: none;
+  margin-left: 88%;
+}
+.discussionCardComments {
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.commentSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0.6;
+}
+.commentSection > input {
+  outline-width: 0;
+  border: 2px solid #ddffbc;
+  border-radius: 10px;
+  padding: 6px 20px;
+  width: 60%;
+  margin-right: 30px;
+}
+.commentSection > button {
+  padding: 3px 6px;
+  border-radius: 50px;
+  color: white;
+  background-color: #3f51b5 !important;
+  border: 2px solid #3f51b5 !important;
+  width: 86px;
+  outline-width: 0;
+  cursor: pointer;
+  margin-left: auto;
+}
+.paper {
+  outline-width: 0;
+  border: none !important;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: white;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
+  margin: 40px 100px;
+  border-radius: 15px;
+  padding: 16px 32px 24px;
+  height: -webkit-fill-available;
+}
+.paperHeader {
+  display: flex;
+  position: sticky !important;
+  align-items: center;
+  justify-content: space-between;
+}
+.close {
+  color: rgb(62, 92, 43);
+  cursor: pointer;
+  transition: 0.5s ease-in;
+  padding: 5px;
+}
+.close:hover {
+  color: white;
+  cursor: pointer;
+  background-color: rgb(62, 92, 43);
+  border-radius: 50%;
+  padding: 5px;
+}
+.content {
+  padding: 30px;
+}
+.paper > h3 {
+  font-size: 14px;
+  font-weight: 500;
+}
+.singleComment {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+}
+.singleComment-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+.singleComment-top > p {
+  margin-left: 20px;
+}
+.singleComment-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.discussionCard > img {
+  height: 140px;
+  border-radius: 10px;
+  width: 95%;
+  display: flex;
+  margin: 0 auto;
+}
+.paper > img {
+  width: 100% !important;
+}
+.modalComment-section {
+  border: 1px solid green;
+  border-radius: 10px;
+}
+.singleComment-bottom > p {
+  display: flex;
+  align-items: center;
+}

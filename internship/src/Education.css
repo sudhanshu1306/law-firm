@@ -1,0 +1,159 @@
+.education {
+  width: 80vw;
+  height: 100vh;
+  overflow: scroll;
+}
+.educationHeader {
+  width: -webkit-fill-available;
+  border-bottom: 1px solid darkslategray;
+}
+.universityName {
+  padding: 40px;
+  border-bottom: 1px solid darkgray;
+  color: rgb(46, 46, 46);
+}
+.universityName-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.universityName-header > button {
+  border: none;
+  outline-width: 0;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: 500;
+  color: red;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.universityName-header > h3 {
+  font-weight: 400;
+  font-size: 20px;
+}
+.universityDetails:not(:last-child) {
+  border-bottom: 1px solid rgb(197, 197, 197);
+}
+.universityDetails-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: gray;
+  font-size: 13px;
+}
+.universityDetails {
+  padding: 10px 0;
+}
+.universityDetails > h4 {
+  font-size: 15px;
+  margin: 10px 0;
+  font-weight: 500;
+}
+.university {
+  padding: 8px 10px !important;
+  width: 200px !important;
+  border-radius: 12px !important;
+}
+.educationModal {
+  outline-width: 0;
+  border: none !important;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: white;
+  box-shadow: 0 2px 8px rgb(0 0 0);
+  margin: 30px auto;
+  border-radius: 15px;
+  padding: 30px 80px 24px;
+  width: 500px;
+  height: -webkit-fill-available;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.length {
+  width: 480px !important;
+  margin: 0 !important;
+}
+.start {
+  width: 200px !important;
+  margin: 0 60px 0 0 !important;
+}
+.PrivateNotchedOutline-root-1 {
+  left: -13px !important;
+  right: -10px !important;
+}
+.MuiInputLabel-outlined.MuiInputLabel-shrink {
+  transform: translate(12px, -6px) scale(0.75) !important;
+}
+.session {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.radiobuttons3 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  width: 100%;
+  margin: 10px;
+}
+.radiobuttons1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  width: 100%;
+  margin: 0px;
+}
+.options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+}
+label {
+  color: rgb(46, 46, 46);
+  padding: 5px 20px;
+  border-radius: 50px;
+  font-size: 13px;
+}
+.radio1 {
+  width: 20% !important;
+}
+.addEducation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: -webkit-fill-available;
+}
+.addEducation > h2 {
+  margin-left: 0 !important;
+  font-size: 25px;
+  font-weight: 400;
+}
+.educationModal > button {
+  padding: 6px 20px;
+  margin-top: 30px;
+  margin-right: 20px;
+  border-radius: 50px;
+  color: #282846 !important;
+  background-color: rgba(255, 255, 255, 0) !important;
+  border: 2px solid #282846 !important;
+  width: 115px;
+  outline-width: 0;
+  cursor: pointer;
+}
+.link6 {
+  text-decoration: none !important;
+}
+.universityForm {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  width: -webkit-fill-available;
+}
