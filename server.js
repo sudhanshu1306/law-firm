@@ -52,6 +52,7 @@ app.use(passport.session());
 //config for development environment
 if(process.env.NODE_ENV==='development'){
   app.use(cors({
+    origin:process.env.CLIENT_URL,
     credentials: true
   }))
   app.use(morgan('dev'))
