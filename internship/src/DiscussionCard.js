@@ -28,7 +28,7 @@ function DiscussionCard({ topicName, author, content, likes, buttonName, questio
         <p>{content}</p>
       </div>
 
-      <a href="#aboutus" onClick={handleOpen} className="readMore">
+      <a  onClick={handleOpen} className="readMore">
         Read More +
       </a>
 
