@@ -59,8 +59,8 @@ function Card({ title, description, image,company,employer, number, site, button
             Registered:- <span>{number} </span> users
           </h5>
           <div className="buttonGroup-bottom">
-            <Link className="lessonButton">
-              <button onClick={handleLesson} >{button2}</button>
+            <Link className="lessonButton" to={{pathname:"/lessons",state:{id:id,title:title,employer:employer}}}>
+              <button  >{button2}</button>
             </Link>
             <button className="register" onClick={handleRegister}>{button}</button>
           </div>

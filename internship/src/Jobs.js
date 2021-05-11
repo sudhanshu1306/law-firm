@@ -70,13 +70,13 @@ console.log(searchobj)
 var arr=[];
 jobs=original
 if(searchobj.skill&& searchobj.skill!==""){
-  arr=jobs.filter(job=> (job.company.indexOf(searchobj.skill)!==-1||job.title.indexOf(searchobj.skill)!==-1))
+  arr=jobs.filter(job=> (job.company.toLowerCase().indexOf(searchobj.skill.toLowerCase())!==-1||job.title.toLowerCase().indexOf(searchobj.skill.toLowerCase())!==-1))
 }
 else{
   arr=original;
 }
 if(searchobj.location&& searchobj.location!==""){
-  arr=arr.filter(job=> (job.venue.indexOf(searchobj.location)!==-1))
+  arr=arr.filter(job=> (job.venue.toLowerCase().indexOf(searchobj.location.toLowerCase())!==-1))
 }
 if(searchobj.experience &&searchobj.experience!==""){
   arr=arr.filter(job=> ((parseInt(job.experience.substring(0,job.experience.indexOf('-')))<=parseInt(searchobj.experience.substring(0,searchobj.experience.indexOf('-'))))&&(parseInt(job.experience.substring(job.experience.indexOf('-')+1))<=parseInt(searchobj.experience.substring(searchobj.experience.indexOf('-')+1)))))

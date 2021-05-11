@@ -34,8 +34,8 @@ function Lessons() {
  let history=useHistory();
 
   useEffect(async ()=>{
-
-    await api.post("/getLessons",history.location.state?history.location.state.state:{})
+    console.log(history.location);
+    await api.post("/getLessons",history.location?history.location.state:{})
   .then((res)=>{
     console.log(res.data);
     changeLessons(res.data.lessons);
@@ -45,8 +45,8 @@ function Lessons() {
   return (
     <div className="lessons">
       <div className="lessonsHeader">
-        <h3>{history.location.state&&history.location.state.state.title}</h3>
-        <p>By: {history.location.state&&history.location.state.state.employer}</p>
+        <h3>{history.location&&history.location.state.title}</h3>
+        <p>By: {history.location&&history.location.state.employer}</p>
       </div>
       <div className="leasonsContent">
       {lessons&&lessons.map(lesson=> lesson.videos&&lesson.videos.map(video=> mapVideo(video)))}

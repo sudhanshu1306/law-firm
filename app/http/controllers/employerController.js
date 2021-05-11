@@ -64,9 +64,9 @@ function employerController(){
         async postJobs(req,res){
             try {
                 let title = req.body.title;let info = req.body.info;
-                let {company,venue,experience,salary}=req.body;
+                let {company,venue,experience,salary,jobType,area}=req.body;
                 console.log(req.body);
-                if(!title || !info || !company || !venue || !experience || !salary || title == "" || info == "" || company == "" || venue == "" || experience == "" || salary == "" ){
+                if(!title || !info || !company || !venue || !experience || !salary || !jobType || !area || title == "" || info == "" || company == "" || venue == "" || experience == "" || salary == "" || jobType=="" || area=="" ){
                 return res.status(500).json({
                     message: 'No fields can be empty'
                 });
@@ -79,6 +79,8 @@ function employerController(){
                     experience: experience,
                     salary: salary,
                     employer : req.user._id,
+                    jobType:jobType,
+                    area:area
                 });
                 await newjob.save();
                 User.findById(req.user._id,async function(err,doc){

@@ -32,7 +32,9 @@ function SelectionCard(props) {
       </div>
       <div className="selectionCard-bottom">
         <button className="view">Delete Job</button>
-          <button className="view" onClick={handleApplicants}>View Applications</button>
+          <Link to={{pathname:"/applications",state:{id:props.id,title:props.title}}}>
+          <button className="view" >View Applications</button>
+          </Link>
       </div>
     </div>
   );

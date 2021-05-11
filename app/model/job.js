@@ -8,13 +8,19 @@ const jobSchema = mongoose.Schema({
     salary:String,
     venue:String,
     info : String,
+    jobType:String,
+    area:String,
     approved : {type : Number, default : 0},
     employer : {type : mongoose.Schema.Types.ObjectId,
         ref : 'User'
        },
-       applied : [{
+    applied : [{
         type :  mongoose.Schema.Types.ObjectId,
         ref : 'User'
-  }]
+  }],
+  accepted : [{
+    type :  mongoose.Schema.Types.ObjectId,
+    ref : 'User'
+}]
 },{timestamps:true})
 module.exports = mongoose.model('Job',jobSchema);
