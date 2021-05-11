@@ -48,4 +48,5 @@
     ]
   },
   "proxy": "https://law-webapp.herokuapp.com/api"
+  
 }

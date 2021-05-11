@@ -179,6 +179,51 @@ function employerController(){
             })
 
         },
+        async editEmployer(req,res){
+            let {name,organizationType} = req.body;
+
+            if(name == "" || organizationType == ""   || name == null || organizationType == null  ){
+                return res.status(500).json({
+                    message: 'No fields can be empty'
+                });
+            }
+
+                    try {
+                     const filter = { _id : req.user._id };
+                     const upd = { name : name,
+                                 organizationType : organizationType
+                          };
+                         
+                          if(req.file){
+                             upd.profileImage=req.file.path;
+                         }
+                         console.log(upd);
+                     const update = { $set: {
+                         ...upd
+                     }};
+                         console.log(update);
+
+                     let doc = await User.findOneAndUpdate(filter, update, {
+                                      new: true
+                                 });
+                                /* return res.status(200).json({
+                                     message: 'Success',
+                                     user : doc
+                                 });*/
+                                 req.user = await doc;
+                                 res.json({
+                                     success:true,
+                                     message:"Successfully updated employer id"
+                                 })
+
+                                 } catch (error) {
+                         return res.status(500).json({
+                             message: error.message
+                         });
+                     }
+              
+
+        },
         async deleteUser(req,res){
             try {
                 let jobs = await User.findById(req.user._id,{jobs : 1});

@@ -3,7 +3,7 @@
   box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
   margin: 30px;
   border-radius: 15px;
-  height: 378px;
+  height: 380px;
   overflow: hidden;
 }
 .discussionCardHeader {
@@ -12,6 +12,11 @@
   justify-content: space-between;
   padding: 20px;
 }
+.discussionCardHeader > h3{
+  font-size: 15px;
+  font-weight: 500;
+  color: rgb(0 0 0);
+  }
 .discussionCardContent {
   width: -webkit-fill-available;
   height: 70px;
@@ -36,7 +41,7 @@
   font-weight: 400;
   cursor: pointer;
   text-decoration: none;
-  margin-left: 88%;
+  margin-left: 80%;
 }
 .discussionCardComments {
   padding: 8px 20px;

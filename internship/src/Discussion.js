@@ -381,7 +381,7 @@ function Discussion() {
             <p id="transition-modal-title">Title</p>
             <input type="text" name="title" placeholder="add title" />
 
-            <p className="content" name="content" id="transition-modal-description">
+            <p className="content1" name="content" id="transition-modal-description">
               Content
             </p>
             <textarea placeholder="type your thoughts here" name="content" id="" cols="30" rows="10" />

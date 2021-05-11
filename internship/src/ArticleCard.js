@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import "./ArticleCard.css";
 import { Link,useHistory } from "react-router-dom";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
@@ -119,8 +119,7 @@ var flag=false;
       </>
     )
   }
-  async function getComment(event) {
-    event.preventDefault();
+  async function getComment() {
 
 
     await api.post("/getComment", article)
@@ -147,6 +146,7 @@ var flag=false;
 
 
   }
+ useEffect(getComment,[]);
   return (
     <div className="articleCard">
       <div className="articleHeader">

@@ -124,7 +124,7 @@ function EmployerHeader() {
                   {!login&&<><MenuItem className="link2" onClick={logout}>
                     Login
                   </MenuItem></>}
-                  {login&&<><Link className="link" to="myAccount">
+                  {login&&<><Link className="link" to="employerAccount">
                     <MenuItem className="link2" onClick={handleClose}>
                       My Account
                     </MenuItem>

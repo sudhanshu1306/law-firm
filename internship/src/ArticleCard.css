@@ -3,8 +3,11 @@
   box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
   margin: 30px;
   border-radius: 15px;
-  height: 230px;
+  height: 250px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 .articleHeader {
   display: flex;
@@ -13,7 +16,9 @@
   padding: 20px;
   color: #3f51b5 !important;
 }
-
+.articleHeader > h3 {
+  font-size: 19px !important;
+  }
 .articleContent {
   width: -webkit-fill-available;
   height: 70px;
@@ -53,7 +58,7 @@
 }
 .commentSection > input {
   outline-width: 0;
-  border: 2px solid #ddffbc;
+  border: 2px solid #02021d;
   border-radius: 10px;
   padding: 6px 20px;
   width: 60%;
@@ -88,8 +93,13 @@
   align-items: center;
   justify-content: space-between;
 }
+.paperHeader > h2{
+  font-size: 15px;
+        font-weight: 500;
+        color: rgb(0 0 0);
+}
 .close {
-  color: rgb(62, 92, 43);
+  color: rgb(32, 36, 87);
   cursor: pointer;
   transition: 0.5s ease-in;
   padding: 5px;
@@ -97,13 +107,14 @@
 .close:hover {
   color: white;
   cursor: pointer;
-  background-color: rgb(62, 92, 43);
+  background-color: rgb(43, 46, 92);
   border-radius: 50%;
   padding: 5px;
 }
 .content {
   padding: 30px;
   height: 267px;
+  overflow: scroll;
 }
 .paper > h3 {
   font-size: 14px;

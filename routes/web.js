@@ -110,6 +110,7 @@ function initRoute(app) {
          user : req.user
        })
     })
+    app.post('/api/editEmployer',auth,employer,dp,employerController().editEmployer);
 
     app.post('/api/editUser',auth,dp,employerController().editUser)
 

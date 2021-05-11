@@ -26,6 +26,7 @@ const userSchema = mongoose.Schema({
     questions : [{
         type :  mongoose.Schema.Types.ObjectId,
         ref : 'Question'
-    }]
+    }],
+    organizationType:String,
 })
 module.exports = mongoose.model('User',userSchema);

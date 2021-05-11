@@ -2,7 +2,7 @@ import "./App.css";
 import Body from "./Body";
 import Footer from "./Footer";
 import Header from "./Header";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import Jobs from "./Jobs";
 import Login from "./Login";
 import Signup from "./Signup";
