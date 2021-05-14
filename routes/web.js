@@ -104,6 +104,10 @@ function initRoute(app) {
 
     app.get('/api/viewJob/:id',auth,employerController().viewJob);
 
+    app.post('/api/acceptApplied',auth,employer,employerController().acceptApplied);
+    
+    app.post('/api/deleteJob',auth,employer,employerController().deleteJob);
+    
     app.get('/api/editUser',auth,async function(req,res){
        res.json({
          success:true,

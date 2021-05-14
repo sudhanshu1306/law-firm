@@ -254,6 +254,24 @@ function employerController(){
                 });
             }
         },
+        async deleteJob(req,res){
+            let jId=req.body.id;
+            try{
+                await Job.findOneAndDelete({_id:jId},(err)=>{
+                    if(err)
+                    res.send(err);
+                    else
+                    res.status(200).json({
+                        success:true,
+                        message:"Successfully deleted job"
+                    })
+                })
+            }catch (error) {
+                return res.status(500).json({
+                    success:false,
+                    message: error
+                });
+        }},
         async applyJob(req,res){
             let jId = req.body.id;
             try {
@@ -304,6 +322,33 @@ function employerController(){
 
             } catch (error) {
                 return res.status(500).json({
+                    message: error.message
+                });
+            }
+        },
+        async acceptApplied(req,res){
+            let jId = req.body.id;
+            try {
+                await Job.findById(jId,(err,foundJob)=>{
+                    if(err)
+                    return err;
+                    else{
+                        if(foundJob.applied.indexOf(req.body.user)!=-1)
+                        foundJob.applied.splice(foundJob.applied.indexOf(req.body.user),1);
+                        if(req.body.btn==1)
+                        foundJob.accepted.push(req.body.user);
+                        foundJob.save();
+                    }
+                })
+                
+                res.json({
+                  success:true,
+                  message:"done"
+                })
+
+            } catch (error) {
+                return res.status(500).json({
+                    success:false,
                     message: error.message
                 });
             }

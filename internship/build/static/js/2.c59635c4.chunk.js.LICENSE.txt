@@ -13,6 +13,12 @@ object-assign
    License: MIT, header required.
    */
 
+/*!
+ * vary
+ * Copyright(c) 2014-2017 Douglas Christopher Wilson
+ * MIT Licensed
+ */
+
 /**
  * A better abstraction over CSS.
  *

@@ -15,7 +15,7 @@ const api=axios.create({
     baseURL:process.env.REACT_APP_ROUTE+'/applyJobs'
   });
 
-function EmployeeJobCard({ jobTitle, companyName, location, experience, salaries, jobTags ,id }) {
+function EmployeeJobCard({ jobTitle, companyName, location, experience, salaries, jobTags ,id,jobType,area }) {
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -67,6 +67,10 @@ function EmployeeJobCard({ jobTitle, companyName, location, experience, salaries
       <div className="jobCardContent">
         <h3>{jobTitle} </h3>
         <h4> {companyName} </h4>
+        <div className="organizationDetails">
+          <p>Area of law: {area}</p>
+          <p>Job Type: {jobType}</p>
+        </div>
         <div className="employeeJobCard-top">
           <p>
             <LocationOnOutlinedIcon className="location1" /> {location}
@@ -122,7 +126,7 @@ function EmployeeJobCard({ jobTitle, companyName, location, experience, salaries
                   <MoneyOutlinedIcon /> {salaries} INR Per Annum
                 </p>
               </div>
-              <div className="descriptionContent">
+              <div className="descriptionContent1">
                 <p>{jobTags}</p>
               </div>
             </div>

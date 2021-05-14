@@ -39,6 +39,17 @@
   height: 21px;
   overflow: hidden;
 }
+.descriptionContent1{
+  height: 51px;
+  margin-top: 30px;
+  overflow: hidden;
+}   
+.descriptionContent1> p {
+  margin: 5px 0;
+  font-size: 12px;
+  font-weight: 300;
+  color: darkslategrey;
+}
 .descriptionContent > p {
   margin: 5px 0;
   font-size: 12px;
@@ -116,4 +127,19 @@
 }
 .money1 {
   color: green !important;
+}
+.organizationDetails {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.organizationDetails > h4 {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgb(42, 43, 42);
+}
+.organizationDetails > p {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgb(42, 43, 42);
 }

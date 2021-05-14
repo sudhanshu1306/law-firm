@@ -11,6 +11,7 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import axios from "axios";
+import e from "cors";
 
 
 const api=axios.create({
@@ -25,6 +26,10 @@ function Jobs() {
   let [jobs,getJobs]=useState([]);
   const [login,changeLogin]=useState(false);
   const [searchobj,changeSearch]=useState({});
+  const  [jobType,changeJobType]=useState(["Part-time training","Full-time training","Volunteering","Temporary","Degree placement","Paralegal work","Remote"]);
+  const [organization,changeOrganization]=useState(["Corporate law firm","Specialist law firm","Small or medium size law firm","Top UK Law firm","Legal advice clinic","Government","Industry / In-house legal department"]);
+  const [area,changeArea]=useState(["Business and commercial affairs","Dispute resolution/Civil litigation","Commercial property","Employment law","Probate, wills and trusts","Residential conveyancing","Family law","Personal injury, accident, medical negligence","Pensions/insurance/tax/financial Regulation / compliance / governance","Consumer problems / Consumer Rights","Personal bankruptcy, personal insolvency","Immigration","Welfare benefits and social security rights","Charity","Intellectual property","Procurement/contract law","Public law","Human rights and equality legislation"])
+  
   function handleSearch (event) {
     changeSearch({
         ...searchobj,[event.target.name]: event.target.value
@@ -46,6 +51,8 @@ function createJob(job){
       experience={job.experience}
       salaries={job.salary}
       jobTags={job.info}
+      jobType={job.jobType}
+      area={job.area}
       id={job._id}
     />
   )
@@ -66,7 +73,6 @@ api.get("../checkLogin")
 })
 },[]);
 function getMatch(){
-console.log(searchobj)
 var arr=[];
 jobs=original
 if(searchobj.skill&& searchobj.skill!==""){
@@ -86,9 +92,56 @@ if(searchobj.experience &&searchobj.experience!==""){
   document.getElementById("skill").value="";
   document.getElementById("location").value="";
   document.getElementById("experience").value="";
-console.log(jobs);
+  if(arr.length==0){
+  window.alert("No match found")
+  getJobs(original);
 }
-
+}
+function handleCheck1(event){
+  if(event.target.value=="on")
+  event.target.value="checked";
+  else
+  event.target.value="on";
+  var arr=[];
+  var set1=new Set();
+  var set2=new Set();
+  var set3=new Set();
+  for(var i=0;i<jobType.length;i++){
+    if(document.getElementById("handleJob"+i).value=="checked")
+    {
+      set1.add(jobType[i]);
+    }
+    else if(set1.has(jobType[i]))
+    set1.delete(jobType[i]);
+  }
+  for(var i=0;i<organization.length;i++){
+    if(document.getElementById("handleOrganization"+i).value=="checked")
+    {
+      set2.add(organization[i]);
+    }
+    else if(set2.has(organization[i]))
+    set2.delete(organization[i]);
+  }
+  for(var i=0;i<area.length;i++){
+    if(document.getElementById("handleArea"+i).value=="checked")
+    {
+      set3.add(area[i]);
+    }
+    else if(set3.has(area[i]))
+    set3.delete(area[i]);
+  }
+  original.forEach(og=>{
+    if((set1.has(og.jobType)||set1.size==0)&&(set2.has(og.employer.organizationType)||set2.size==0)&&(set3.has(og.area)||set3.size==0))
+    arr.push(og);
+  });
+  getJobs(arr);
+  if(set1.size==0&&set2.size==0&&set3.size==0)
+  getJobs(original)
+  if(arr.length==0){
+    window.alert("No match");
+    window.location.reload();
+  }
+}
   return (
     <div className="jobs">
       <div className="jobsHeader">
@@ -123,43 +176,43 @@ console.log(jobs);
             <AccordionDetails>
               <div className="checkBox">
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleJob0" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Part-time training
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleJob1" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Full-time training
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleJob2" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Volunteering
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleJob3" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Temporary
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input  id="handleJob4" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Degree placement
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleJob5" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Paralegal work
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleJob6" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Remote / online
                   </label>
@@ -178,43 +231,43 @@ console.log(jobs);
             <AccordionDetails>
               <div className="checkBox">
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleOrganization0" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Corporate law firm
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleOrganization1" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Specialist law firm
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleOrganization2" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Small or medium size law firm
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleOrganization3" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Top UK Law firm
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleOrganization4" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Legal advice clinic
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleOrganization5" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Government
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleOrganization6" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Industry / In-house legal department
                   </label>
@@ -233,109 +286,109 @@ console.log(jobs);
             <AccordionDetails>
               <div className="checkBox">
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleArea0" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Business and commercial affairs
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleArea1" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Dispute resolution/Civil litigation
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleArea2" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Commercial property
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleArea3" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Employment law
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleArea4" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Probate, wills and trusts
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleArea5" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Residential conveyancing
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleArea6" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Family law
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleArea7" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Personal injury, accident, medical negligence
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleArea8" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Pensions/insurance/tax/financial Regulation / compliance / governance
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleArea9" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Consumer problems / Consumer Rights
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleArea10" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Personal bankruptcy, personal insolvency
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleArea11" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Immigration
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleArea12" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Welfare benefits and social security rights
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleArea13" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Charity
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleArea14" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Intellectual property
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleArea15" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Procurement/contract law
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleArea16" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Public law
                   </label>
                 </div>
                 <div className="checkItems">
-                  <input type="checkbox" />
+                  <input id="handleArea17" onClick={handleCheck1} type="checkbox" />
                   <label className="labels" htmlFor="">
                     Human rights and equality legislation
                   </label>

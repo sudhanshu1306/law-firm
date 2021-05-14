@@ -238,6 +238,24 @@ function Employer() {
                 placeholder="company"
                 onChange={handleChange}
               />
+              <label for="job_type">Job Type</label>
+              <input
+                name="jobType"
+                type="text"
+                class="form-control"
+                id="jobType"
+                placeholder="job type"
+                onChange={handleChange}
+              />
+              <label for="area">Area of Law</label>
+              <input
+                name="area"
+                type="text"
+                class="form-control"
+                id="area"
+                placeholder="area of law"
+                onChange={handleChange}
+              />
               <label for="experience">Experience nedeed</label>
               <input
                 name="experience"

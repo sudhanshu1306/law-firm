@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
 import "./Applications.css";
-import { Link ,useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import CandidateCard from "./CandidateCard";
 import MyLocationIcon from "@material-ui/icons/MyLocation";
 import SearchIcon from "@material-ui/icons/Search";
@@ -18,22 +18,32 @@ function Applications() {
   var history=useHistory();
   const [users,getUsers]=useState([]);
   const [url,changeUrl]=useState();
+  const [id,setId]=useState();
+  const [title,setTitle]=useState();
   var flag=false;
   function mapUser(user){
     return(
       <CandidateCard
        key={user._id}
        name={user.name}
-       title={history.location.state.title}
+       title={title}
        image={url+user.profileImage}
        user={user}
+       jobId={id}
        id={user._id}
       />
     )
   }
   useEffect(()=>{
-    console.log(history.location);
-     api.post("/jobApplicant",history.location.state?{id:history.location.state.id}:{})
+    const parsedId = history.location.state?history.location.state.id:(localStorage.getItem("id") )
+    const parsedTitle = history.location.state?history.location.state.title:(localStorage.getItem("title") )
+    console.log(parsedTitle);
+    setId(parsedId)
+    setTitle(parsedTitle)
+    localStorage.setItem("id", parsedId)
+    localStorage.setItem("title", parsedTitle)
+     console.log(parsedTitle);
+     api.post("/jobApplicant",{id:(history.location.state?history.location.state.id:parsedId)})
   .then((res)=>{
     console.log(res.data);
     getUsers(res.data.applicant);
@@ -41,6 +51,7 @@ function Applications() {
   }).catch((err)=>{
     console.log(err);
   })},[]);
+
   return (
     <div className="applications">
       <div className="candidateSearch1">

@@ -1,9 +1,18 @@
 import React from "react";
 import "./CandidateCard.css";
+import { useHistory } from "react-router-dom";
 import Modal from "@material-ui/core/Modal";
 import CloseIcon from "@material-ui/icons/Close";
 import Fade from "@material-ui/core/Fade";
 import Avatar from "@material-ui/core/Avatar";
+import axios from "axios";
+
+
+const api=axios.create({
+  withCredentials: true,
+  baseURL:process.env.REACT_APP_ROUTE,
+  validateStatus: () => true
+});
 
 function CandidateCard(props) {
   const [open, setOpen] = React.useState(false);
@@ -15,6 +24,34 @@ function CandidateCard(props) {
   const handleClose = () => {
     setOpen(false);
   };
+  function handleAccept(event){
+    event.preventDefault();
+    api.post("/acceptApplied",{id:props.jobId,user:props.id,btn:1})
+    .then((res)=>{
+      if(res.data.success){
+        window.alert("Successfull accepted candidate");
+        window.location.reload();
+      }
+    })
+    .catch(err=>{
+      window.alert("Some error occured");
+      window.location.reload();
+    })
+   }
+   function handleReject(event){
+    event.preventDefault();
+    api.post("/acceptApplied",{id:props.jobId,user:props.id,btn:0})
+    .then((res)=>{
+      if(res.data.success){
+        window.alert("Successfull rejected candidate");
+        window.location.reload();
+      }
+    })
+    .catch(err=>{
+      window.alert("Some error occured");
+      window.location.reload();
+    })
+   }
   return (
     <div className="candidateCard">
       <div className="candidateCard-left">
@@ -52,7 +89,7 @@ function CandidateCard(props) {
         </ul>
       </div>
       <div className="candidateCard-right">
-        <button>Reject</button>
+        <button onClick={handleReject}>Reject</button>
         <button onClick={handleOpen}>View details</button>
       </div>
       <Modal
@@ -136,7 +173,7 @@ function CandidateCard(props) {
               </div>
             </div>
 
-            <button>Accept Candidate</button>
+            <button onClick={handleAccept}>Accept Candidate</button>
           </div>
         </Fade>
       </Modal>

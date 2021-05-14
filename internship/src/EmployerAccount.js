@@ -5,6 +5,9 @@ import { Link,useHistory } from "react-router-dom";
 import CandidateCard from "./CandidateCard";
 import SelectionCard from "./SelectionCard";
 import axios from "axios";
+import Modal from "@material-ui/core/Modal";
+import CloseIcon from "@material-ui/icons/Close";
+import Fade from "@material-ui/core/Fade";
 
 
 const api=axios.create({
@@ -14,6 +17,15 @@ const api=axios.create({
   });
 
 function EmployerAccount() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   const [original,getOriginal]=useState([]);
   let [jobs,getJobs]=useState([]);
   const [user,changeUser]=useState({});
@@ -27,6 +39,40 @@ function EmployerAccount() {
   }
   let history=useHistory();
   var flag=false;
+  async function handleSubmit(event) {
+    event.preventDefault();
+    let myForm=document.getElementById('myForm');
+        var formData=new FormData(myForm);
+    const config = {
+          headers: {
+              'content-type': 'multipart/form-data'
+          }
+      };
+    await api.post("../editEmployer",formData,config)
+    .then(function (res) {
+        console.log(res.data);
+        if(res.data.success){
+            flag=true;
+           if(flag){
+            handleClose();
+            window.alert("Successfully updated profile");
+           history.push('/employerAccount');
+           window.location.reload();
+         }}
+           else{
+            window.alert(res.data.message);
+           history.push('/employerAccount');
+         }
+      })
+      .catch(function (error) {
+  
+         window.alert("Some error occured");
+         history.push('/employerAccount');
+  
+      });
+  
+  
+    }
   useEffect(()=>{api.post("../viewProfile",{})
     .then(function (res) {
         console.log(res.data);
@@ -82,7 +128,7 @@ function EmployerAccount() {
             src="https://cdn.dribbble.com/users/936002/screenshots/12772391/media/68f3ed6324a30cb7047d0ec6485d6a6b.png?compress=1&resize=800x600"
           />*/}
           {user.profileImage?<Avatar className="profileImage1" alt={user.name} src={url+user.profileImage}  />:<Avatar  className="profileImage1">{user.name&&user.name.charAt(0)}</Avatar>}
-     
+          <button onClick={handleOpen}>Edit Profile</button>
         </div>
         <div className="numbers">
           <div className="count">
@@ -96,7 +142,8 @@ function EmployerAccount() {
         </div>
         <div className="employerAccount-HeaderRight">
           <h3>{user.name}</h3>
-          <p>Scope</p>
+          <p>Organization Type: Small or medium size law firm. </p>
+          <p>Area of law: Welfare benefits and social security rights. </p>
           <p>Profile Type: Employer</p>
         </div>
       </div>
@@ -115,6 +162,60 @@ function EmployerAccount() {
           {jobs.map(job=> mapJob(job))}
         </div>
       </div>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className="modal"
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={open}>
+          <div className="paperArticle">
+            <div className="paperArticleHeader">
+              <h2>Add Job</h2>
+
+              <CloseIcon onClick={handleClose} className="close" />
+            </div>
+            <hr />
+            <div className="form">
+            <form className="formModal" id="myForm">
+              <label for="companyname">Company Name</label>
+              <input
+                name="name"
+                type="text"
+                class="form-control"
+                id="companyname"
+                placeholder="company name"
+                defaultValue={user.name}
+              />
+              <label for="organizationType">Organization Type</label>
+              <input
+                name="organizationType"
+                type="text"
+                class="form-control"
+                id="organization_type"
+                placeholder="organization type"
+                defaultValue={user.organizationType}
+              />
+              <label for="profilePhoto">Profile Photo</label>
+              <input
+                name="pic"
+                type="file"
+                class="form-control"
+                id="profilePhoto"
+                placeholder="profile photo"
+              />
+
+              <button className="save" onClick={handleSubmit}>Save Changes</button>
+              </form>
+            </div>
+          </div>
+        </Fade>
+      </Modal>
     </div>
   );
 }

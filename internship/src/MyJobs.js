@@ -24,6 +24,8 @@ function MyJobs() {
       experience={job.experience}
       salaries={job.salary}
       jobTags={job.info}
+      jobType={job.jobType}
+      area={job.area}
       id={job._id}
     />
   )
