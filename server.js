@@ -58,17 +58,17 @@ if(process.env.NODE_ENV==='development'){
   app.use(morgan('dev'))
 }
 
-if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
-    app.use(cors({
-        origin:process.env.CLIENT_URL,
-        credentials: true
-      }))
-    app.use(express.static(__dirname+'/internship/build'));
+// if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
+//     app.use(cors({
+//         origin:process.env.CLIENT_URL,
+//         credentials: true
+//       }))
+//     app.use(express.static(__dirname+'/internship/build'));
 
-    app.get('*', function (req, res) {
-        res.sendFile(__dirname+'/internship/build');
-    });
-};
+//     app.get('*', function (req, res) {
+//         res.sendFile(__dirname+'/internship/build');
+//     });
+// };
 
 
 app.use(flash());

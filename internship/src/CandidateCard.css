@@ -195,3 +195,16 @@
   margin-right: 10px;
   color: #214151 !important;
 }
+.jobDetailsPage > button{
+  width: 200px;
+  border-radius: 50px;
+  border: 2px solid darkslategray;
+  background-color: darkslategrey;
+  color: white;
+  padding: 5px 10px;
+  margin-left: 80%;
+  cursor: pointer;
+}
+.jobDetailsPage > button:hover{
+  box-shadow: 0 8px 10px gray;
+}

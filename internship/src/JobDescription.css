@@ -1,0 +1,89 @@
+.jobDescription {
+  display: flex;
+  align-items: baseline;
+  padding: 30px;
+}
+.jobDetails-left {
+  flex: 0.6;
+  padding-right: 30px;
+}
+.jobDetails-right {
+  flex: 0.4;
+}
+.containerRight {
+  background-color: rgb(255, 205, 148);
+  padding: 20px;
+  margin-bottom: 25px;
+}
+.containerRight > h2 {
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+}
+.headerTitle {
+  display: flex;
+  align-items: center;
+}
+.headerTitle > img {
+  width: 100px;
+  height: 100px;
+}
+.headerTitle-main {
+  display: flex;
+  flex-direction: column;
+}
+.headerTitle-main > h1 {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+.headerTitle-main > p {
+  font-size: 15px;
+}
+.decriptionofJob {
+  margin: 45px 0;
+}
+.aboutCompany > h2 {
+  font-size: 18px;
+}
+.clients {
+  display: flex;
+  align-items: center;
+}
+.clients > h5 {
+  margin-right: 10px;
+}
+.clients > p {
+  margin-right: 10px;
+}
+.type {
+  border-radius: 5px;
+  padding: 5px 8px;
+  width: fit-content;
+  margin: 10px;
+  font-size: 12px;
+}
+.color1 {
+  background-color: rgb(255, 174, 0);
+  color: white;
+}
+.color21 {
+  background-color: rgb(0, 102, 255);
+  color: white;
+}
+.color31 {
+  background-color: rgb(0, 180, 45);
+  color: white;
+}
+.color41 {
+  background-color: rgb(255, 51, 0);
+  color: white;
+}
+.containerRight-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.divisor {
+  color: darkslategray !important;
+  margin: 20px 0;
+}

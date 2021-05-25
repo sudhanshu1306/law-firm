@@ -1,12 +1,15 @@
 const User = require('../../model/user');
 const Job = require('../../model/job');
+const Experience=require('../../model/experience');
+const Application = require('../../model/application');
 const bcrypt = require('bcryptjs');
 const authController = require('./authController');
 function employerController(){
 
     return {
-
+        
         async getJobs(req,res){
+            const url=req.protocol+'://'+req.get('host')+'/';
             try {
                 let jobs = await Job.find({approved : 1}).populate("employer");
                 let user=null;
@@ -20,7 +23,8 @@ function employerController(){
                 res.json({
                   success:true,
                     jobs : jobs,
-                    user :user
+                    user :user,
+                    url:url
                 });
             } catch (error) {
                 console.log(error);
@@ -49,7 +53,7 @@ function employerController(){
         async getJobApplicant(req,res){
             try {
                 const url=req.protocol+'://'+req.get('host')+'/';
-                let job = await Job.findById(req.body.id).populate("applied");
+                let job = await Job.findById(req.body.id).populate({path:"applied",populate:{path:"user",populate:{path:"experience"}}});
                 res.json({
                   success:true,
                   applicant : job.applied,
@@ -64,7 +68,7 @@ function employerController(){
         async postJobs(req,res){
             try {
                 let title = req.body.title;let info = req.body.info;
-                let {company,venue,experience,salary,jobType,area}=req.body;
+                let {company,venue,experience,salary,jobType,area,skillsRequired,skillsDeveloped}=req.body;
                 console.log(req.body);
                 if(!title || !info || !company || !venue || !experience || !salary || !jobType || !area || title == "" || info == "" || company == "" || venue == "" || experience == "" || salary == "" || jobType=="" || area=="" ){
                 return res.status(500).json({
@@ -80,7 +84,9 @@ function employerController(){
                     salary: salary,
                     employer : req.user._id,
                     jobType:jobType,
-                    area:area
+                    area:area,
+                    skillsDeveloped:skillsDeveloped,
+                    skillsRequired:skillsRequired
                 });
                 await newjob.save();
                 User.findById(req.user._id,async function(err,doc){
@@ -226,6 +232,45 @@ function employerController(){
               
 
         },
+        async addExperience(req,res){
+            try {
+                let {jobTitle,companyName,location,duration,description}=req.body;
+                console.log(req.body);
+                if(!jobTitle || !companyName|| !location || !duration || !description || jobTitle=="" || companyName== "" || location=="" || duration ==""|| description=="" ){
+                return res.status(500).json({
+                    message: 'No fields can be empty'
+                });
+                }
+                const newExperience=new Experience({
+                    jobTitle:jobTitle,
+                    companyName:companyName,
+                    location:location,
+                    duration:duration,
+                    description:description,
+                    user:req.user._id
+                })
+                newExperience.save();
+                User.findById(req.user._id,async function(err,doc){
+                    if(err){
+                        return res.status(500).json({
+                            message: 'Internal server error'
+                        });
+                    }
+                    doc.experience.push(newExperience._id);
+                    doc.save();
+                   /* return res.status(200).json({
+                        message: 'Success',
+                        employer : doc
+                    });*/
+                    res.redirect('/api/jobs');
+                });
+
+            } catch (error) {
+                return res.status(500).json({
+                    message: error
+                });
+            }
+        },
         async deleteUser(req,res){
             try {
                 let jobs = await User.findById(req.user._id,{jobs : 1});
@@ -274,15 +319,36 @@ function employerController(){
         }},
         async applyJob(req,res){
             let jId = req.body.id;
+            console.log(req.body);
+            let {firstName,lastName,description,areaExperience,areaInterested,que1,que2,que3,que4,que5}=req.body;
             try {
+                if(firstName==null||lastName==null||description==null||areaExperience==null||areaInterested==null||firstName==''||lastName==''||description==''||areaExperience==''||areaInterested==''){
+                    return res.status(500).json({
+                        message: 'No fields can be empty'
+                    });
+                }
                 Job.findById(jId,async function(err,doc){
-                    if(doc.applied.indexOf(req.user._id) === -1){
-                        await doc.applied.push(req.user._id);
+                        const application=new Application({
+                            firstName:firstName,
+                            lastName:lastName,
+                            description:description,
+                            areaExperience:areaExperience,
+                            areaInterested:areaInterested,
+                            que1:que1,
+                            que2:que2,
+                            que3:que3,
+                            que4:que4,
+                            que5:que5,
+                            job:jId,
+                            user:req.user._id
+                        })
+                        await application.save();
+                        await doc.applied.push(application);
                         await doc.save();
                         User.findById(req.user._id,async function(err,docc){
                             if(err){
                                 return res.status(500).json({
-                                    message: 'Intrnal servor error'
+                                    message: 'Internal server error'
                                 });
                             }
                             else{
@@ -293,12 +359,7 @@ function employerController(){
 
                 })
 
-                      }
-
-                /*return res.status(200).json({
-                    message: 'Success',
-                    job : doc
-                });*/
+                      
             })
             } catch (error) {
                 return res.status(500).json({
@@ -333,10 +394,14 @@ function employerController(){
                     if(err)
                     return err;
                     else{
-                        if(foundJob.applied.indexOf(req.body.user)!=-1)
-                        foundJob.applied.splice(foundJob.applied.indexOf(req.body.user),1);
+                        var applicant=foundJob.applied.map(fj=> fj.user );
+                        console.log(applicant);
+                        var applicationId="";
+                        if(applicant.indexOf(req.body.user)!=-1){
+                            applicationId=foundJob.applied[applicant.indexOf(req.body.user)];
+                        foundJob.applied.splice(applicant.indexOf(req.body.user),1);}
                         if(req.body.btn==1)
-                        foundJob.accepted.push(req.body.user);
+                        foundJob.accepted.push(applicationId);
                         foundJob.save();
                     }
                 })

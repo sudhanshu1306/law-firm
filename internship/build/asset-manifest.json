@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/static/css/main.daccf34c.chunk.css",
-    "main.js": "/static/js/main.9c09fd16.chunk.js",
-    "main.js.map": "/static/js/main.9c09fd16.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.eca2c5ed.js",
-    "runtime-main.js.map": "/static/js/runtime-main.eca2c5ed.js.map",
-    "static/css/2.7fc9bc2b.chunk.css": "/static/css/2.7fc9bc2b.chunk.css",
-    "static/js/2.c59635c4.chunk.js": "/static/js/2.c59635c4.chunk.js",
-    "static/js/2.c59635c4.chunk.js.map": "/static/js/2.c59635c4.chunk.js.map",
-    "static/js/3.f4815aff.chunk.js": "/static/js/3.f4815aff.chunk.js",
-    "static/js/3.f4815aff.chunk.js.map": "/static/js/3.f4815aff.chunk.js.map",
+    "main.css": "/static/css/main.f2cae1f3.chunk.css",
+    "main.js": "/static/js/main.e2f9a5c1.chunk.js",
+    "main.js.map": "/static/js/main.e2f9a5c1.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.1b519279.js",
+    "runtime-main.js.map": "/static/js/runtime-main.1b519279.js.map",
+    "static/css/2.04771b91.chunk.css": "/static/css/2.04771b91.chunk.css",
+    "static/js/2.74aeb683.chunk.js": "/static/js/2.74aeb683.chunk.js",
+    "static/js/2.74aeb683.chunk.js.map": "/static/js/2.74aeb683.chunk.js.map",
+    "static/js/3.8d5c4aa4.chunk.js": "/static/js/3.8d5c4aa4.chunk.js",
+    "static/js/3.8d5c4aa4.chunk.js.map": "/static/js/3.8d5c4aa4.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/2.7fc9bc2b.chunk.css.map": "/static/css/2.7fc9bc2b.chunk.css.map",
-    "static/css/main.daccf34c.chunk.css.map": "/static/css/main.daccf34c.chunk.css.map",
-    "static/js/2.c59635c4.chunk.js.LICENSE.txt": "/static/js/2.c59635c4.chunk.js.LICENSE.txt",
+    "static/css/2.04771b91.chunk.css.map": "/static/css/2.04771b91.chunk.css.map",
+    "static/css/main.f2cae1f3.chunk.css.map": "/static/css/main.f2cae1f3.chunk.css.map",
+    "static/js/2.74aeb683.chunk.js.LICENSE.txt": "/static/js/2.74aeb683.chunk.js.LICENSE.txt",
     "static/media/Body.css": "/static/media/Work risk-free.4d299f9c.svg",
     "static/media/Signup.css": "/static/media/41464-student-with-books.fb0dccce.gif",
     "static/media/EmployerAccount.css": "/static/media/backgroun-4.5abaf1c3.jpg",
     "static/media/Lecture.css": "/static/media/description.dabe52cf.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.eca2c5ed.js",
-    "static/css/2.7fc9bc2b.chunk.css",
-    "static/js/2.c59635c4.chunk.js",
-    "static/css/main.daccf34c.chunk.css",
-    "static/js/main.9c09fd16.chunk.js"
+    "static/js/runtime-main.1b519279.js",
+    "static/css/2.04771b91.chunk.css",
+    "static/js/2.74aeb683.chunk.js",
+    "static/css/main.f2cae1f3.chunk.css",
+    "static/js/main.e2f9a5c1.chunk.js"
   ]
 }

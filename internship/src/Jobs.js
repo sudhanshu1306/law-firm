@@ -11,8 +11,6 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import axios from "axios";
-import e from "cors";
-
 
 const api=axios.create({
     withCredentials: true,
@@ -25,6 +23,7 @@ function Jobs() {
   const [original,getOriginal]=useState([]);
   let [jobs,getJobs]=useState([]);
   const [login,changeLogin]=useState(false);
+  const [url,getUrl]=useState("");
   const [searchobj,changeSearch]=useState({});
   const  [jobType,changeJobType]=useState(["Part-time training","Full-time training","Volunteering","Temporary","Degree placement","Paralegal work","Remote"]);
   const [organization,changeOrganization]=useState(["Corporate law firm","Specialist law firm","Small or medium size law firm","Top UK Law firm","Legal advice clinic","Government","Industry / In-house legal department"]);
@@ -51,17 +50,22 @@ function createJob(job){
       experience={job.experience}
       salaries={job.salary}
       jobTags={job.info}
+      organizationType={job.employer.organizationType}
       jobType={job.jobType}
       area={job.area}
+      url={url+job.employer.profileImage}
+      skillsRequired={job.skillsRequired}
+      skillsDeveloped={job.skillsDeveloped}
       id={job._id}
     />
   )
 }
 useEffect(()=>{api.get("/")
 .then((res)=>{
-  //console.log(res.data);
+  console.log(res.data);
   getJobs(res.data.jobs);
   getOriginal(res.data.jobs);
+  getUrl(res.data.url);
 }).catch((err)=>{
   console.log(err);
 })
@@ -148,13 +152,13 @@ function handleCheck1(event){
         <div className="jobsHeader-Search">
           <div className="search1">
             <SearchIcon className="jobIcon" />
-            <input type="text" id="skill" name="skill" onChange={handleSearch} placeholder="search your interest" />
+            <input className="noBorder" type="text" id="skill" name="skill" onChange={handleSearch} placeholder="search your interest" />
           </div>
           <div className="locations">
-            <MyLocationIcon className="jobIcon" /> <input type="text" id="location" name="location" onChange={handleSearch} placeholder=" Location" />
+            <MyLocationIcon className="jobIcon" /> <input className="noBorder" type="text" id="location" name="location" onChange={handleSearch} placeholder=" Location" />
           </div>
           <div className="experiences">
-            <CalendarTodayIcon className="jobIcon" /> <input type="text" id="experience" name="experience" onChange={handleSearch}  placeholder="Experience" />
+            <CalendarTodayIcon className="jobIcon" /> <input className="noBorder" type="text" id="experience" name="experience" onChange={handleSearch}  placeholder="Experience" />
           </div>
 
           <button onClick={getMatch}>Find a match</button>

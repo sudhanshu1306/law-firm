@@ -6,7 +6,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Fade from "@material-ui/core/Fade";
 import Avatar from "@material-ui/core/Avatar";
 import axios from "axios";
-
+import CandidateDescription from "./CandidateDescription";
 
 const api=axios.create({
   withCredentials: true,
@@ -104,8 +104,8 @@ function CandidateCard(props) {
         }}
       >
         <Fade in={open}>
-          <div className="paper">
-            <div className="paperHeader">
+          <div className="jobDetailsPage">
+            {/* <div className="paperHeader">
               <h2 id="transition-modal-title">{props.name}</h2>
 
               <CloseIcon onClick={handleClose} className="close" />
@@ -171,8 +171,18 @@ function CandidateCard(props) {
                   </li>
                 </ul>
               </div>
-            </div>
-
+            </div> */}
+            <CloseIcon onClick={handleClose} className="close1" />
+            <CandidateDescription 
+               key={props.id}
+              name={props.name}
+              title={props.title}
+              image={props.image}
+              user={props.user}
+              application={props.application}
+              jobId={props.jobId}
+              id={props.id}
+            />
             <button onClick={handleAccept}>Accept Candidate</button>
           </div>
         </Fade>

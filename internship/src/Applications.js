@@ -20,17 +20,19 @@ function Applications() {
   const [url,changeUrl]=useState();
   const [id,setId]=useState();
   const [title,setTitle]=useState();
+  const [applications,changeApplications]=useState([]);
   var flag=false;
-  function mapUser(user){
+  function mapUser(application){
     return(
       <CandidateCard
-       key={user._id}
-       name={user.name}
+       key={application.user._id}
+       name={application.firstName+" "+application.lastName}
        title={title}
-       image={url+user.profileImage}
-       user={user}
+       image={url+application.user.profileImage}
+       user={application.user}
+       application={application}
        jobId={id}
-       id={user._id}
+       id={application._id}
       />
     )
   }
@@ -46,7 +48,7 @@ function Applications() {
      api.post("/jobApplicant",{id:(history.location.state?history.location.state.id:parsedId)})
   .then((res)=>{
     console.log(res.data);
-    getUsers(res.data.applicant);
+    changeApplications(res.data.applicant);
     changeUrl(res.data.url)
   }).catch((err)=>{
     console.log(err);
@@ -107,7 +109,7 @@ function Applications() {
         </div>
 
         <div className="applicationsbottom-right">
-        {users.map(user=> mapUser(user))}
+        {applications.map(application=> mapUser(application))}
         </div>
       </div>
     </div>

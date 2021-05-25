@@ -92,7 +92,8 @@ function initRoute(app) {
     app.post('/api/jobsParti',auth,employerController().getJobsPart)
 
     app.post('/api/jobApplicant',auth,employer,employerController().getJobApplicant)
-
+    
+    app.post('/api/addExperience',auth,employerController().addExperience);
 
     app.post('/api/jobs',auth,employer,employerController().postJobs)
 

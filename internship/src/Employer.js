@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from "react";
+import MultiSelect from "react-multiple-select-dropdown-lite";
 import "./Employer.css";
 import SelectionCard from "./SelectionCard";
 import MyLocationIcon from "@material-ui/icons/MyLocation";
@@ -37,6 +38,54 @@ function Employer() {
         ...searchobj,[event.target.name]: event.target.value
     });
   }
+  const [value, setvalue] = useState("");
+
+  const handleOnchange = val => {
+    setvalue(val);
+    var x=val;
+    var y=[];
+    x=x.split(",");
+    y=(options.filter(option=> x.indexOf(option.value)!==-1));
+    y=y.map((option)=> {return option.label;});
+    changeAdd ({
+      ...add,skillsDeveloped: y
+  });
+  };
+  const handleOnchange1 = val => {
+    setvalue(val);
+    var x=val;
+    var y=[];
+    x=x.split(",");
+    y=(options.filter(option=> x.indexOf(option.value)!==-1));
+    y=y.map((option)=> {return option.label;});
+    changeAdd ({
+      ...add,skillsRequired: y
+  });
+  };
+
+  const options = [
+    { label: "Legal research skills", value: "option_1" },
+    { label: "Factual research skills", value: "option_2" },
+    { label: "Advising on options, strategies and solutions", value: "option_3" },
+    { label: "Help drafting legally accurate and effective documents", value: "option_4" },
+    { label: "Spoken and written advocacy", value: "option_5" },
+    { label: "Attending client meetings", value: "option_6" },
+    { label: "Negotiating solutions to client’s issues", value: "option_7" },
+    { label: "Planning, managing and progressing legal matters and transactions", value: "option_8" },
+    { label: "Interviewing skills", value: "option_9" },
+    { label: "Attending interviews", value: "option_10" },
+    { label: "Preparing for and attending court proceedings", value: "option_11" },
+    { label: "Proofreading legal documents", value: "option_12" },
+    { label: "Initiating and planning work activities and projects", value: "option_13" },
+    { label: "Prioritising and managing work activities and projects", value: "option_14" },
+    { label: "Keeping, using and maintaining accurate, complete and clear records", value: "option_15" },
+    { label: "Applying good business practices ", value: "option_16" },
+    { label: "Organisational/multi-tasking skills", value: "option_17" },
+    { label: "Communication Sills: Communicating clearly and effectively, orally and in writing", value: "option_18" },
+    { label: "Establishing and maintaining effective and professional relations with clients", value: "option_19" },
+    { label: "Establishing and maintaining effective and professional relations with others", value: "option_20" },
+    { label: "Team working skills", value: "option_21" }
+  ];
   let history=useHistory();
   var flag=false;
     async function handleSubmit(event) {
@@ -276,6 +325,15 @@ function Employer() {
                 placeholder="salary"
                 onChange={handleChange}
               />
+              <div className="addskill">
+                <p>Skills that will be developed on the job:</p>
+                <MultiSelect className="formWidth" onChange={handleOnchange} options={options} name="skillsDeveloped" />
+              </div>
+              <div className="addskill">
+                <p>Skills that are required to apply:</p>
+                <MultiSelect className="formWidth" onChange={handleOnchange1} options={options} name="skillsRequired" />
+              </div>
+
               <label for="jobTags">About job</label>
               <textarea
                 placeholder="type your requirements here"

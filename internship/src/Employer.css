@@ -87,7 +87,7 @@
   padding: 10px 20px;
   width: 330px;
   margin-right: 5px;
-  border: none;
+  border: none !important;
 }
 .location {
   display: flex;
@@ -103,8 +103,7 @@
   padding: 10px 20px;
   width: 200px;
   margin-right: 5px;
-  border: none;
-  border-radius: 50px;
+  border: none !important;
 }
 .experience {
   overflow: hidden;
@@ -125,7 +124,7 @@
   padding: 10px 20px;
   width: 115px;
   margin-right: 5px;
-  border: none;
+  border: none !important;
 }
 .candidateSearch > button {
   border-radius: 50px;
@@ -205,4 +204,11 @@
 .skills > input {
   margin-right: 10px;
   color: #383e56;
+}
+.formWidth{
+  width: 886px !important;
+  
+}
+.msl{
+  border: 2px solid #383e56 !important;
 }

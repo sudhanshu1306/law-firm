@@ -1,0 +1,48 @@
+.candidateDescription {
+  display: flex;
+  align-items: baseline;
+  padding: 30px;
+}
+.candidateDescription-left {
+  flex: 0.6;
+  padding-right: 30px;
+}
+.candidateDescription-right {
+  flex: 0.4;
+}
+.containerRight {
+  background-color: rgb(255, 205, 148);
+  padding: 20px;
+  margin-bottom: 25px;
+}
+.containerRight > h2 {
+  font-size: 17px;
+  font-weight: 400;
+  text-align: center;
+}
+.candidateDescription-right > h2 {
+  text-align: center;
+  font-size: 19px;
+  font-weight: 600;
+}
+.candidateDescription-left > h2 {
+  font-size: 25px;
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+.moreDetails {
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+}
+.moreDetails > p {
+  margin-right: 10px;
+}
+.expSummary {
+  font-size: 14px;
+  margin: 20px 0;
+  color: gray;
+}
+.experienceDetails {
+  margin: 30px 0;
+}

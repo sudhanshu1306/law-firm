@@ -3,7 +3,8 @@
   box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
   margin: 30px;
   border-radius: 15px;
-  height: 222px;
+  height: 261px;
+  border: 4px solid rgb(83, 83, 83);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -35,22 +36,11 @@
 .salary {
   margin-right: 90px;
 }
-.descriptionContent {
-  height: 21px;
-  overflow: hidden;
-}
-.descriptionContent1{
+.descriptionContent1 {
   height: 51px;
-  margin-top: 30px;
   overflow: hidden;
-}   
-.descriptionContent1> p {
-  margin: 5px 0;
-  font-size: 12px;
-  font-weight: 300;
-  color: darkslategrey;
 }
-.descriptionContent > p {
+.descriptionContent1 > p {
   margin: 5px 0;
   font-size: 12px;
   font-weight: 300;
@@ -83,7 +73,6 @@
   align-items: center;
 }
 .jobCardContent1 {
-  height: 240px;
   padding: 10px 20px;
   display: flex;
   flex-direction: column;
@@ -132,6 +121,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 10px 5px;
 }
 .organizationDetails > h4 {
   font-size: 15px;
@@ -142,4 +132,190 @@
   font-size: 14px;
   font-weight: 400;
   color: rgb(42, 43, 42);
+}
+.apply {
+  background-color: rgb(16 47 232) !important;
+  color: white !important;
+  border: 2px solid #3f51b5 !important;
+}
+.paperArticle {
+  display: flex;
+  flex-direction: column !important;
+}
+.paperArticleHeader > h2 {
+  margin-left: 0 !important;
+  font-size: 25px;
+  font-weight: 400;
+  color: rgb(100, 1, 121);
+}
+.jobCardContent1 {
+  padding: 20px 0;
+}
+.name {
+  display: flex;
+  align-items: center;
+}
+.name > input {
+  font-size: 15px;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 8px;
+  margin-right: 20px;
+  width: 275px;
+}
+.msl-vars {
+  --input-width: 823px !important;
+}
+.addskill > p {
+  font-size: 14px;
+  padding: 8px 0;
+}
+.addExperience {
+  display: flex;
+  flex-direction: column;
+}
+.singleExp {
+  display: flex;
+  flex-direction: column;
+}
+.singleExp > input {
+  font-size: 15px;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 8px;
+  margin-right: 20px;
+  width: 800px;
+  margin: 10px 0;
+}
+textarea {
+  min-height: 100px;
+  font-size: 15px;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 8px;
+  margin-right: 20px;
+  width: 800px;
+  margin: 10px 0;
+}
+.applied {
+  border: 2px solid darkslategray;
+  padding: 10px;
+  border-radius: 50px;
+  outline-width: 0;
+  width: 200px;
+  margin: 30px;
+  float: right;
+  cursor: pointer;
+  background: transparent;
+}
+.applied:hover {
+  border: 2px solid darkslategray;
+  background-color: darkslategray;
+  color: white;
+  cursor: pointer;
+}
+label {
+  margin: 0 !important;
+  padding: 3px 0 !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+.addexpe {
+  border: 2px solid rgb(84, 6, 119);
+  background-color: rgb(100, 1, 121);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  outline-width: 0;
+  width: 200px;
+  float: right;
+  cursor: pointer;
+  margin: 30px auto;
+}
+.experienceSheet {
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  display: none;
+}
+.sheetTitle {
+  font-size: 17px !important;
+  font-weight: 600 !important;
+  color: black !important;
+}
+.sheetDetails > p {
+  color: gray;
+}
+.sheetDetails {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.sheetDescp {
+  color: gray;
+}
+.sheetDescp > h4 {
+  font-weight: 400;
+  margin: 5px 0;
+  color: rgb(127, 128, 125);
+}
+.sheetDescp > p {
+  font-size: 12px;
+  color: rgb(127, 128, 125);
+}
+.addExperience > h2 {
+  font-size: 20px;
+  font-weight: 400;
+  color: rgb(100, 1, 121);
+  margin: 10px 0;
+}
+ul {
+  margin: 20px 0;
+}
+ul > p {
+  color: red;
+  font-size: 19px;
+  margin-bottom: 10px;
+}
+ul > li {
+  margin: 10px 0;
+  font-size: 15px;
+  color: rgb(95, 95, 95);
+}
+.jobDetailsPage {
+  outline-width: 0;
+  border: none !important;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: white;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
+  margin: 40px 50px;
+  border-radius: 15px;
+  padding: 30px 30px 24px;
+  height: -webkit-fill-available;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.close1 {
+  position: fixed;
+  border-radius: 50%;
+  padding: 5px;
+  background-color: rgb(250, 186, 250);
+  color: #1b1a17 !important;
+  left: 90%;
+  cursor: pointer;
+}
+.close1:hover {
+  box-shadow: 0 3px 10px gray;
+}
+input{
+  outline-width: 0;
+  border: 2px solid #383e56 !important;
+}
+textarea{
+  outline-width: 0;
+  border: 2px solid #383e56 !important;
 }

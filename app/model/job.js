@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const User = require('./user');
-
+const Application=require('./application');
 const jobSchema = mongoose.Schema({
     title : String,
     company:String,
@@ -16,11 +16,13 @@ const jobSchema = mongoose.Schema({
        },
     applied : [{
         type :  mongoose.Schema.Types.ObjectId,
-        ref : 'User'
+        ref : 'Application'
   }],
+  skillsRequired:[String],
+  skillsDeveloped:[String],
   accepted : [{
     type :  mongoose.Schema.Types.ObjectId,
-    ref : 'User'
+    ref : 'Application'
 }]
 },{timestamps:true})
 module.exports = mongoose.model('Job',jobSchema);

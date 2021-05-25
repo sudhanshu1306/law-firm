@@ -3,6 +3,7 @@ const Job = require('./job');
 const Article = require('./article');
 const Course = require('./course');
 const Question = require('./question');
+const Experience=require('./experience');
 
 const userSchema = mongoose.Schema({
     name : String,
@@ -26,6 +27,10 @@ const userSchema = mongoose.Schema({
     questions : [{
         type :  mongoose.Schema.Types.ObjectId,
         ref : 'Question'
+    }],
+    experience :[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref : 'Experience'
     }],
     organizationType:String,
 })
