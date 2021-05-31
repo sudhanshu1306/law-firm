@@ -119,6 +119,10 @@ function initRoute(app) {
 
     app.post('/api/editUser',auth,dp,employerController().editUser)
 
+    app.post('/api/editSra',auth,employerController().editSra);
+
+    app.post('/api/addPriority',auth,employerController().addPriority);
+
     app.post('/api/deleteUser',auth,employerController().deleteUser)
 
     app.get('/api/adminJobs',admin,adminController().getAdminJobs)

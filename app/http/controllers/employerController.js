@@ -2,6 +2,7 @@ const User = require('../../model/user');
 const Job = require('../../model/job');
 const Experience=require('../../model/experience');
 const Application = require('../../model/application');
+const Sra=require('../../model/sra')
 const bcrypt = require('bcryptjs');
 const authController = require('./authController');
 function employerController(){
@@ -53,7 +54,7 @@ function employerController(){
         async getJobApplicant(req,res){
             try {
                 const url=req.protocol+'://'+req.get('host')+'/';
-                let job = await Job.findById(req.body.id).populate({path:"applied",populate:{path:"user",populate:{path:"experience"}}});
+                let job = await  Job.findById(req.body.id).populate({path:"applied",populate:{path:"user",populate:{path:"experience"}}}).populate({path:"applied",populate:{path:'experiences'}});
                 res.json({
                   success:true,
                   applicant : job.applied,
@@ -232,6 +233,119 @@ function employerController(){
               
 
         },
+        async editSra(req,res){
+            let {queA1,queA2,queA3,queA4,queB1,queB2,queB3,queB4,queC1,queC2,queC3,queC4,queD1,queD2,queD3,queD4,queE1,queE2,queE3,queE4} = req.body;
+            console.log(req.body);
+            if(queA1 == "" || queA2 == ""  || queA3 == "" || queA4 == "" || queB1 == ""  || queB2 == "" || queB3==""||queB4==""||queC1==""||queC2==""||queC3==""||queC4==""||queD1==""||queD2==""||queD3==""||queD4==""||queE1==""||queE2==""||queE3==""||queE4==""||queA1 == null || queA2 == null  || queA3 == null || queA4 == null || queB1 == null  || queB2 == null || queB3==null||queB4==null||queC1==null||queC2==null||queC3==null||queC4==null||queD1==null||queD2==null||queD3==null||queD4==null||queE1==null||queE2==null||queE3==null||queE4==null){
+                return res.status(500).json({
+                    message: 'No fields can be empty'
+                });
+            }
+                   
+                    try {
+                        const user=User.findById(req.user._id);
+                        if(user.sra==null){
+                            const sra=new Sra({
+                                queA1:queA1,
+                                queA2:queA2,
+                                queA3:queA3,
+                                queA4:queA4,
+                                queB1:queB1,
+                                queB2:queB2,
+                                queB3:queB3,
+                                queB4:queB4,
+                                queC1:queC1,
+                                queC2:queC2,
+                                queC3:queC3,
+                                queC4:queC4,
+                                queD1:queD1,
+                                queD2:queD2,
+                                queD3:queD3,
+                                queD4:queD4,
+                                queE1:queE1,
+                                queE2:queE2,
+                                queE3:queE3,
+                                queE4:queE4
+                            })
+                            sra.save();
+                            User.findById(req.user._id,(err,doc)=>{
+                                doc.sra=sra;
+                                doc.save();
+                            })
+                        }
+                     else{
+                     const upd = {  
+                        queA1:queA1,
+                        queA2:queA2,
+                        queA3:queA3,
+                        queA4:queA4,
+                        queB1:queB1,
+                        queB2:queB2,
+                        queB3:queB3,
+                        queB4:queB4,
+                        queC1:queC1,
+                        queC2:queC2,
+                        queC3:queC3,
+                        queC4:queC4,
+                        queD1:queD1,
+                        queD2:queD2,
+                        queD3:queD3,
+                        queD4:queD4,
+                        queE1:queE1,
+                        queE2:queE2,
+                        queE3:queE3,
+                        queE4:queE4
+                          };
+                         
+                     const update = { $set: {
+                         ...upd
+                     }};
+                         console.log(update);
+
+                     let doc = await Sra.findOneAndUpdate({_id:user.sra}, update, {
+                                      new: true
+                                 });
+                                }
+                                return res.status(200).json({
+                                    success:true,
+                                    message: 'Success',
+                                });
+
+                     } catch (error) {
+                         console.log(error);
+                         return res.status(500).json({
+                             message: error.message
+                         });
+                     }
+
+
+        },
+        async addPriority(req,res){
+            try {
+                let {locationPriority,areaPriority}=req.body;
+                console.log(req.body);
+                User.findById(req.user._id,async function(err,doc){
+                    if(err){
+                        return res.status(500).json({
+                            message: 'Internal server error'
+                        });
+                    }
+                    doc.locationPriority=locationPriority;
+                    doc.areaPriority=areaPriority;
+                    doc.save();
+                   /* return res.status(200).json({
+                        message: 'Success',
+                        employer : doc
+                    });*/
+                    res.redirect('/api/jobs');
+                });
+
+            } catch (error) {
+                return res.status(500).json({
+                    message: error
+                });
+            }
+        },
         async addExperience(req,res){
             try {
                 let {jobTitle,companyName,location,duration,description}=req.body;
@@ -258,11 +372,10 @@ function employerController(){
                     }
                     doc.experience.push(newExperience._id);
                     doc.save();
-                   /* return res.status(200).json({
-                        message: 'Success',
-                        employer : doc
-                    });*/
-                    res.redirect('/api/jobs');
+                   return res.status(200).json({
+                        success: true,
+                        experience : newExperience
+                    });
                 });
 
             } catch (error) {
@@ -320,9 +433,9 @@ function employerController(){
         async applyJob(req,res){
             let jId = req.body.id;
             console.log(req.body);
-            let {firstName,lastName,description,areaExperience,areaInterested,que1,que2,que3,que4,que5}=req.body;
+            let {firstName,lastName,description,areaExperience,areaInterested,experiences}=req.body;
             try {
-                if(firstName==null||lastName==null||description==null||areaExperience==null||areaInterested==null||firstName==''||lastName==''||description==''||areaExperience==''||areaInterested==''){
+                if(firstName==null||lastName==null||description==null||areaInterested==null||firstName==''||lastName==''||description==''||areaInterested==''){
                     return res.status(500).json({
                         message: 'No fields can be empty'
                     });
@@ -334,14 +447,15 @@ function employerController(){
                             description:description,
                             areaExperience:areaExperience,
                             areaInterested:areaInterested,
-                            que1:que1,
-                            que2:que2,
-                            que3:que3,
-                            que4:que4,
-                            que5:que5,
                             job:jId,
-                            user:req.user._id
+                            user:req.user._id,
+                            experiences:[]
                         })
+                        experiences.forEach(exp=>{
+                            if(!application.experiences)
+                            application.experiences=[];
+                            application.experiences.push(exp);
+                        });
                         await application.save();
                         await doc.applied.push(application);
                         await doc.save();
@@ -370,8 +484,8 @@ function employerController(){
         async viewApplied(req,res){
             let jId = req.body.id;
             try {
-                let applied = await Job.findById(jId,{applied:1}).populate('applied');
-
+                let applied = await Job.findById(jId,{applied:1}).populate({path:'applied',populate:{path:'experiences'}});
+                console.log(applied);
                 /*return res.status(200).json({
                     message: 'Success',
                     job : doc
@@ -425,17 +539,20 @@ function employerController(){
                 id = req.user._id;
             }
             try {
-                let user = await User.findById(id).populate('jobs').populate('articles').populate({
+                let user = await User.findById(id).populate({path:'jobs',populate:{path:'employer'}}).populate('articles').populate('experience').populate('sra').populate({
                   path:'courses',
                   populate:{
                     path:'author'
                   }
                 });
+                let application=await Application.find({user:id});
+                console.log(application);
                 res.json({
                   success:true,
                     user : user,
                     logged : req.user,
-                    url:url
+                    url:url,
+                    application:application
                 });
             } catch (error) {
                 return res.status(500).json({

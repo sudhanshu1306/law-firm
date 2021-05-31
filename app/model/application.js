@@ -8,11 +8,6 @@ const applicationSchema = mongoose.Schema({
     description:String,
     areaExperience:[String],
     areaInterested:[String],
-    que1:String,
-    que2:String,
-    que3:String,
-    que4:String,
-    que5:String,
     job:{
         type:mongoose.Schema.Types.ObjectId,
         ref: 'Job'
@@ -20,6 +15,10 @@ const applicationSchema = mongoose.Schema({
     user:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'
-    }
+    },
+    experiences:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Experience'
+    }]
 })
 module.exports = mongoose.model('Application',applicationSchema);

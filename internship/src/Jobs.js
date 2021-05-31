@@ -60,18 +60,44 @@ function createJob(job){
     />
   )
 }
-useEffect(()=>{api.get("/")
+useEffect(()=>{
+  var original1=[];
+  api.get("/")
 .then((res)=>{
   console.log(res.data);
+  console.log(jobs.length);
+  if(jobs.length==0)
   getJobs(res.data.jobs);
   getOriginal(res.data.jobs);
+  original1=res.data.jobs;
   getUrl(res.data.url);
 }).catch((err)=>{
   console.log(err);
 })
 api.get("../checkLogin")
-.then((res)=>{
-  changeLogin(res.data.success);
+.then((res1)=>{
+  changeLogin(res1.data.success);
+  
+if(res1.data.success){api.post("../viewProfile",{})
+.then(function (res) {
+    console.log(res.data);
+    if(res.data.success){
+        flag=true;
+       if(flag){
+       if(res.data.user.locationPriority&&res.data.user.areaPriority){
+        defaultFilter(original1,res.data.user.areaPriority,res.data.user.locationPriority)
+       }
+       else if(res.data.user.areaPriority)
+       defaultFilter(original1,res.data.user.areaPriority,[]);
+       else if(res.data.user.locationPriority)
+       defaultFilter(original1,[],res.data.user.locationPriority);
+     }
+    }
+  })
+  .catch(function (error) {
+
+     console.log(error);
+  });}
 }).catch((err)=>{
   console.log(err);
 })
@@ -145,6 +171,25 @@ function handleCheck1(event){
     window.alert("No match");
     window.location.reload();
   }
+}
+function defaultFilter(original1,area,jobType){
+  console.log(original1);
+  var arr1=[];
+  var arr2=[];
+  var arr3=[];
+  original1.forEach(og=>{
+    if(jobType.indexOf(og.jobType)!=-1&&area.indexOf(og.area)!=-1)
+    arr1.push(og);
+    else if(jobType.indexOf(og.jobType)!=-1||area.indexOf(og.area)!=-1)
+    arr2.push(og);
+    else
+    arr3.push(og);
+  });
+  console.log(arr1);
+  console.log(arr2);
+  console.log(arr3);
+  getJobs(arr1.concat(arr2,arr3));
+  console.log(arr1.concat(arr2,arr3));
 }
   return (
     <div className="jobs">

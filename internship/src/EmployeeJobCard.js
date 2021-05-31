@@ -23,7 +23,10 @@ function EmployeeJobCard({ url, jobTitle, companyName, location, experience, sal
    var flag=false;
    const [user,changeUser]=useState([]);
    const [application,changeApplication]=useState({id:id,areaInterested:[],areaExperience:[]})
-   const [exp,changeExperience]=useState({});
+   const [defaultInterested,changeDefaultInterested]=useState([]);
+   const [defaultExperienced,changeDefaultExperience]=useState([]);
+   const [defaultFields,changeDefaultFields]=useState({});
+   const [exp,changeExperience]=useState({id:id});
    function handleInput (event) {
     changeApplication ({
         ...application,[event.target.name]: event.target.value
@@ -36,21 +39,44 @@ function EmployeeJobCard({ url, jobTitle, companyName, location, experience, sal
   }
    useEffect(()=>{ api.post("../viewProfile",{})
    .then(function (res) {
-       console.log(res.data);
        if(res.data.success){
            flag=true;
           if(flag){
           changeUser(res.data.user);
-        }
+          var appli=res.data.application;
+          if(appli.length!=0){
+            changeDefaultFields(appli[appli.length-1]);
+            options.forEach(option=>{
+              if(appli[appli.length-1].areaInterested.indexOf(option.label)!==-1)
+              changeDefaultInterested(prev=> [...prev,option]);
+              if(appli[appli.length-1].areaExperience.indexOf(option.label)!==-1)
+              changeDefaultExperience(prev=> [...prev,option]);
+            })
+            changeApplication ({
+              ...application,areaExperience: defaultExperienced
+          });
+          changeApplication ({
+            ...application,areaExperience: defaultInterested
+        });
+        changeApplication ({
+          ...application,firstName: defaultFields.firstName
+      });
+      changeApplication ({
+        ...application,lastName: defaultFields.lastName
+    });
+    changeApplication ({
+      ...application,description: defaultFields.description
+  });
+          }
+          mapOptions1(res.data.user.experience);
+        }}
           else{
-           window.alert("Please login");
-          history.push('/login');}
+           console.log(res.data);
        }
      })
      .catch(function (error) {
  
-        window.alert("Please login");
-        history.push('/login');
+        console.log(error);
  
      });
  
@@ -95,6 +121,17 @@ function EmployeeJobCard({ url, jobTitle, companyName, location, experience, sal
       ...application,areaInterested: y
   });
   };
+  const handleOnchange2 = (val) => {
+    setvalue(val);
+    var x=val;
+    var y=[];
+    x=x.split(",");
+    y=(options1.filter(option=> x.indexOf(option.value)!==-1));
+    y=y.map((option)=> {return option.id;});
+    changeApplication ({
+      ...application,experiences: y
+  });
+  };
   const options = [
     { label: "Business and commercial affairs", value: "option_1" },
     { label: "Dispute resolution / Civil litigation", value: "option_2" },
@@ -117,6 +154,12 @@ function EmployeeJobCard({ url, jobTitle, companyName, location, experience, sal
     { label: "Environmental Law", value: "option_19" },
     { label: "Charity Law", value: "option_20" },
   ];
+  const [options1,changeOptions1]=useState([]);
+  function mapOptions1(prevExperiences){
+    prevExperiences.forEach((prev,ct)=>{
+      changeOptions1(options1=> [...options1,{label:prev.jobTitle,id:prev._id,value:"option_"+ct}])
+    })
+  }
   async function handleSubmit(event) {
     event.preventDefault();
     console.log(application)
@@ -152,6 +195,7 @@ function EmployeeJobCard({ url, jobTitle, companyName, location, experience, sal
             flag=true;
            if(flag){
             window.alert("You added an experience");
+            changeOptions1(options1=> [...options1,{label:res.data.experience.jobTitle,id:res.data.experience._id,value:"option_"+options1.length}])
             changeExperience({});
             document.getElementById("jobTitle").value="";
             document.getElementById("companyName").value="";
@@ -218,46 +262,7 @@ function EmployeeJobCard({ url, jobTitle, companyName, location, experience, sal
         }}
       >
         <Fade in={open}>
-          {/* <div className="paperArticle">
-            <div className="paperArticleHeader">
-              <h2>Job Description</h2>
-
-              <CloseIcon onClick={handleClose} className="close" />
-            </div>
-            <hr />
-            <div className="jobCardContent1">
-              <h3>{jobTitle} </h3>
-              <h4> {companyName} </h4>
-              <div className="employeeJobCard-top">
-                <p>
-                  <LocationOnOutlinedIcon /> {location}
-                </p>
-
-                <p>
-                  <WorkOutlineOutlinedIcon /> {experience} Years
-                </p>
-                <p>
-                  <MoneyOutlinedIcon /> {salaries} INR Per Annum
-                </p>
-              </div>
-              <div className="descriptionContent1">
-                <p>{jobTags}</p>
-              </div>
-            </div>
-            <div className="jobRequirement">
-              <p>What we are looking for?</p>
-              <ul>
-                <li>Ability to communicate design decisions to team members.</li>
-                <li> Adept to fast-paced working environments</li>
-                <li>
-                  Strong understanding of typography, color and visual layout to ensure code
-                  consistency with the design
-                </li>
-                <li> Ability to code interactive components and elements</li>
-                <li>Solid foundations of web principles and best practices</li>
-              </ul>
-            </div>
-          </div> */}
+          
           <div className="jobDetailsPage">
             <CloseIcon  onClick={handleClose} className="close1" />
             <JobDescription 
@@ -304,18 +309,22 @@ function EmployeeJobCard({ url, jobTitle, companyName, location, experience, sal
                {/* <input type="text" name="id" value={id} hidden /> */}
               <label for="Full name">Full Name</label>
               <div className="name">
-                <input type="text" placeholder="First Name" name="firstName" onChange={handleInput} />
-                <input type="text" placeholder="Last Name" name="lastName" onChange={handleInput} />
+                <input type="text" placeholder="First Name" name="firstName" onChange={handleInput} defaultValue={defaultFields?defaultFields.firstName:""} />
+                <input type="text" placeholder="Last Name" name="lastName" onChange={handleInput} defaultValue={defaultFields?defaultFields.lastName:""}/>
               </div>
               <label>Describe yourself</label>
-              <textarea type="text" placeholder="Summary" name="description" onChange={handleInput}/>
+              <textarea type="text" placeholder="Summary" name="description" onChange={handleInput} defaultValue={defaultFields?defaultFields.description:""}/>
               <div className="addskill">
                 <p>Select the areas of law you have previous experience:</p>
-                <MultiSelect onChange={handleOnchange} options={options} name="areaExperience"/>
+                <MultiSelect onChange={handleOnchange} options={options} name="areaExperience" defaultValue={defaultExperienced}/>
               </div>
               <div className="addskill">
                 <p>Select the areas of law you are interested in:</p>
-                <MultiSelect onChange={handleOnchange1} options={options} name="areaInterested"/>
+                <MultiSelect onChange={handleOnchange1} options={options} name="areaInterested" defaultValue={defaultInterested}/>
+              </div>
+              <div className="addskill">
+                <p>Select previous experience :</p>
+                <MultiSelect onChange={handleOnchange2} options={options1} name="experience"/>
               </div>
               <div className="addExperience">
                 <h2>Add Experience</h2>
@@ -343,7 +352,7 @@ function EmployeeJobCard({ url, jobTitle, companyName, location, experience, sal
                 <div className="singleExp">
                   <label for="jobtitle">Job Title</label>
                   <input type="text" name="jobTitle" id="jobTitle" placeholder="Job Title" onChange={getExperience}/>
-                  <label for="comapanyname">Comapany name</label>
+                  <label for="comapanyname">Company name</label>
                   <input
                     type="text"
                     name="companyName"
@@ -368,74 +377,9 @@ function EmployeeJobCard({ url, jobTitle, companyName, location, experience, sal
                 </div>
                 <button className="addexpe" onClick={handleExperience}> Add Experience</button>
               </div>
-              <ul>
-                <p>Follow the following Competences:</p>
-                <li>
-                  Act honestly and with integrity, in accordance with legal and regulatory
-                  requirements and the SRA Standards and Regulations
-                </li>
-                <li>
-                  Maintain the level of competence and legal knowledge needed to practise
-                  effectively, taking into account changes in their role and/or practice context and
-                  developments in the law
-                </li>
-                <li>
-                  Work within the limits of their competence and the supervision which they need
-                </li>
-                <li>
-                  Draw on a sufficient detailed knowledge and understanding of their field(s) of
-                  work and role in order to practise effectively
-                </li>
-                <li>Apply understanding, critical thinking and analysis to solve problems</li>
-              </ul>
-
-              <label for="ans1">Have I had experience?</label>
-              <textarea
-                placeholder="type your answer here"
-                name="que1"
-                id="ans1"
-                cols="30"
-                rows="1"
-                onChange={handleInput}
-              />
-              <label for="ans2">What was it/what did I do?</label>
-              <textarea
-                placeholder="type your answer here"
-                name="que2"
-                id="ans2"
-                cols="30"
-                rows="5"
-                onChange={handleInput}
-              />
-              <label for="ans3">How can I evidence my experience?</label>
-              <textarea
-                placeholder="type your answer here"
-                name="que3"
-                id="ans3"
-                cols="30"
-                rows="5"
-                onChange={handleInput}
-              />
-              <label for="ans4">What did I learn?</label>
-              <textarea
-                placeholder="type your answer here"
-                name="que4"
-                id="ans4"
-                cols="30"
-                rows="5"
-                onChange={handleInput}
-              />
-              <label for="ans5">Do I need more experience?</label>
-              <textarea
-                placeholder="type your answer here"
-                name="que5"
-                id="ans5"
-                cols="30"
-                rows="5"
-                onChange={handleInput}
-              />
+              
               <button className="addexpe" onClick={handleSubmit}>Apply</button>
-              {/* </form> */}
+              
             </div>
             
           </div>

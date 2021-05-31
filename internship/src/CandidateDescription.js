@@ -8,6 +8,23 @@ function CandidateDescription({name,title,image,user,application,jobId,id}) {
   function areaInterested(intr){
     return <p className="type color31">Corporate Firm</p>
   }
+  function mapExperience(exp){
+    return <> <div className="experienceDetails">
+    <h2>{exp.jobTitle}</h2>
+    <div className="moreDetails">
+      <p>{exp.companyName}</p>
+      <p>{exp.location}</p>
+      <p>{exp.duration}</p>
+    </div>
+    <p className="expSummary">
+      {exp.description}
+    </p>
+    <ul>
+      <li>List acomlishments, skills</li>
+      <li>Concentrate on really selling yourself</li>
+    </ul>
+  </div>  </>
+  }
   return (
     <div className="candidateDescription">
       <div className="candidateDescription-left">
@@ -27,23 +44,9 @@ function CandidateDescription({name,title,image,user,application,jobId,id}) {
         <hr className="divisor" />
         <h2>Experience</h2>
         <div className="myexperience">
-          {(application.user.experience.length==0&& <h2>No prior experience</h2>)}
-          {(application.user.experience.length==1&& <> <div className="experienceDetails">
-            <h2>{application.user.experience[0].jobTitle}</h2>
-            <div className="moreDetails">
-              <p>{application.user.experience[0].companyName}</p>
-              <p>{application.user.experience[0].location}</p>
-              <p>{application.user.experience[0].duration}</p>
-            </div>
-            <p className="expSummary">
-              {application.user.experience[0].description}
-            </p>
-            <ul>
-              <li>List acomlishments, skills</li>
-              <li>Concentrate on really selling yourself</li>
-            </ul>
-          </div>  </>)}
-          {(application.user.experience.length>1&& <> <div className="experienceDetails">
+          {(application.experiences.length==0&& <h2>No prior experience</h2>)}
+          {(application.experiences.length>0&&application.experiences.map(exp=> mapExperience(exp)) )}
+          {/* {(application.user.experience.length>1&& <> <div className="experienceDetails">
             <h2>{application.user.experience[application.user.experience.length-1].jobTitle}</h2>
             <div className="moreDetails">
               <p>{application.user.experience[application.user.experience.length-1].companyName}</p>
@@ -73,7 +76,7 @@ function CandidateDescription({name,title,image,user,application,jobId,id}) {
               <li>Concentrate on really selling yourself</li>
             </ul>
           </div>
-          </>)}
+          </>)} */}
         </div>
       </div>
       <div className="candidateDescription-right">

@@ -3,6 +3,7 @@ const Job = require('./job');
 const Article = require('./article');
 const Course = require('./course');
 const Question = require('./question');
+const Sra=require('./sra');
 const Experience=require('./experience');
 
 const userSchema = mongoose.Schema({
@@ -32,6 +33,12 @@ const userSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref : 'Experience'
     }],
+    sra :{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Sra'
+    },
     organizationType:String,
+    locationPriority:[String],
+    areaPriority:[String],
 })
 module.exports = mongoose.model('User',userSchema);

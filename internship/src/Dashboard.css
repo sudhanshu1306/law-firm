@@ -4,7 +4,6 @@
   overflow: scroll;
 }
 .dashboardHeader {
-  
   border-bottom: 1px solid darkslategray;
 }
 .link5 {
@@ -74,4 +73,59 @@
   align-items: center;
   width: 22% !important;
   margin: 0px !important;
+}
+.table {
+  margin-top: 70px  !important;
+  margin-bottom: 15px;
+}
+table,
+th,
+td {
+  border: 1px solid rgb(130, 209, 94);
+}
+th {
+  background-color: rgb(150, 211, 122);
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 3px;
+}
+.textareas {
+  width: 147px;
+  height: 200px;
+  margin: 0;
+  border: none !important;
+}
+.ques {
+  background-color: rgba(150, 211, 122, 0.336);
+  padding: 10px;
+}
+.expyr {
+  width: 300px;
+  padding: 8px;
+  border-radius: 8px;
+  outline-width: 0;
+  border: 1px solid gray;
+  font-size: 15px;
+}
+.tableGroup {
+  display: flex;
+  align-items: center;
+  margin-left: 70%;
+  padding: 30px;
+}
+.tableButton {
+  padding: 6px 20px;
+  margin-top: 30px;
+  margin-right: 20px;
+  border-radius: 50px;
+  color: #ffffff;
+  background-color: rgb(29 29 29);
+  border: 2px solid #5f5e5e;
+  width: 141px;
+  outline-width: 0;
+  cursor: pointer;
+}
+.tableButton:hover {
+  box-shadow: 0 5px 10px gray;
 }
