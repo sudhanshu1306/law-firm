@@ -59,19 +59,17 @@
 }
 .sideMenu:hover {
   width: 275px;
-  background-color: #485461;
+  background-color: #63aefd;
   background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
-  border-radius: 20px;
+  border-radius: 0px;
   text-decoration: none !important;
-  border: 1px solid white;
 }
 
 .active {
   background-color: #485461;
   background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
-  border-radius: 20px;
+  border-radius: 0px;
   text-decoration: none !important;
-  border: 1px solid white;
   text-decoration: black !important;
   width: 275px;
 }

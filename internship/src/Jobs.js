@@ -48,6 +48,8 @@ function createJob(job){
       companyName={job.company}
       location={job.venue}
       experience={job.experience}
+      experiencePrimary={job.experiencePrimary}
+      experienceSecondary={job.experienceSecondary}
       salaries={job.salary}
       jobTags={job.info}
       organizationType={job.employer.organizationType}
@@ -161,7 +163,7 @@ function handleCheck1(event){
     set3.delete(area[i]);
   }
   original.forEach(og=>{
-    if((set1.has(og.jobType)||set1.size==0)&&(set2.has(og.employer.organizationType)||set2.size==0)&&(set3.has(og.area)||set3.size==0))
+    if((checkHash(set1,og.jobType)||set1.size==0)&&(set2.has(og.employer.organizationType)||set2.size==0)&&(checkHash(set3,og.area)||set3.size==0))
     arr.push(og);
   });
   getJobs(arr);
@@ -172,24 +174,47 @@ function handleCheck1(event){
     window.location.reload();
   }
 }
+function checkHash(set,arr){
+  console.log(set)
+  console.log(arr);
+  var flag=false;
+  arr.forEach(val=>{
+    if(set.has(val))
+    flag=true;
+  })
+  console.log(flag);
+  return flag;
+}
+function checkExist(arr1,arr2){
+  var set=new Set();
+  arr1.forEach(arr=>{
+    set.add(arr);
+  })
+  var flag=false;
+  arr2.forEach(arr=>{
+    if(set.has(arr))
+    flag=true;
+  })
+  return flag;
+}
 function defaultFilter(original1,area,jobType){
   console.log(original1);
   var arr1=[];
   var arr2=[];
   var arr3=[];
   original1.forEach(og=>{
-    if(jobType.indexOf(og.jobType)!=-1&&area.indexOf(og.area)!=-1)
+    if(checkExist(jobType,og.jobType)&&checkExist(area,og.area))
     arr1.push(og);
-    else if(jobType.indexOf(og.jobType)!=-1||area.indexOf(og.area)!=-1)
+    else if(checkExist(jobType,og.jobType)||checkExist(area,og.area))
     arr2.push(og);
     else
     arr3.push(og);
   });
-  console.log(arr1);
-  console.log(arr2);
-  console.log(arr3);
+  // console.log(arr1);
+  // console.log(arr2);
+  // console.log(arr3);
   getJobs(arr1.concat(arr2,arr3));
-  console.log(arr1.concat(arr2,arr3));
+  //console.log(arr1.concat(arr2,arr3));
 }
   return (
     <div className="jobs">

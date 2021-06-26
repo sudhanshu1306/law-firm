@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/static/css/main.0d5e063f.chunk.css",
-    "main.js": "/static/js/main.833ae710.chunk.js",
-    "main.js.map": "/static/js/main.833ae710.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.1b519279.js",
-    "runtime-main.js.map": "/static/js/runtime-main.1b519279.js.map",
+    "main.css": "/static/css/main.181738f6.chunk.css",
+    "main.js": "/static/js/main.fe82e58d.chunk.js",
+    "main.js.map": "/static/js/main.fe82e58d.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.62f2501d.js",
+    "runtime-main.js.map": "/static/js/runtime-main.62f2501d.js.map",
     "static/css/2.04771b91.chunk.css": "/static/css/2.04771b91.chunk.css",
-    "static/js/2.24d23ff2.chunk.js": "/static/js/2.24d23ff2.chunk.js",
-    "static/js/2.24d23ff2.chunk.js.map": "/static/js/2.24d23ff2.chunk.js.map",
-    "static/js/3.8d5c4aa4.chunk.js": "/static/js/3.8d5c4aa4.chunk.js",
-    "static/js/3.8d5c4aa4.chunk.js.map": "/static/js/3.8d5c4aa4.chunk.js.map",
+    "static/js/2.2f48a34b.chunk.js": "/static/js/2.2f48a34b.chunk.js",
+    "static/js/2.2f48a34b.chunk.js.map": "/static/js/2.2f48a34b.chunk.js.map",
+    "static/js/3.260d924d.chunk.js": "/static/js/3.260d924d.chunk.js",
+    "static/js/3.260d924d.chunk.js.map": "/static/js/3.260d924d.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.04771b91.chunk.css.map": "/static/css/2.04771b91.chunk.css.map",
-    "static/css/main.0d5e063f.chunk.css.map": "/static/css/main.0d5e063f.chunk.css.map",
-    "static/js/2.24d23ff2.chunk.js.LICENSE.txt": "/static/js/2.24d23ff2.chunk.js.LICENSE.txt",
+    "static/css/main.181738f6.chunk.css.map": "/static/css/main.181738f6.chunk.css.map",
+    "static/js/2.2f48a34b.chunk.js.LICENSE.txt": "/static/js/2.2f48a34b.chunk.js.LICENSE.txt",
     "static/media/Body.css": "/static/media/Work risk-free.4d299f9c.svg",
     "static/media/Signup.css": "/static/media/41464-student-with-books.fb0dccce.gif",
     "static/media/EmployerAccount.css": "/static/media/backgroun-4.5abaf1c3.jpg",
     "static/media/Lecture.css": "/static/media/description.dabe52cf.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.1b519279.js",
+    "static/js/runtime-main.62f2501d.js",
     "static/css/2.04771b91.chunk.css",
-    "static/js/2.24d23ff2.chunk.js",
-    "static/css/main.0d5e063f.chunk.css",
-    "static/js/main.833ae710.chunk.js"
+    "static/js/2.2f48a34b.chunk.js",
+    "static/css/main.181738f6.chunk.css",
+    "static/js/main.fe82e58d.chunk.js"
   ]
 }

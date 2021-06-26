@@ -29,6 +29,7 @@ function Applications() {
        name={application.firstName+" "+application.lastName}
        title={title}
        image={url+application.user.profileImage}
+       url={url}
        user={application.user}
        application={application}
        jobId={id}

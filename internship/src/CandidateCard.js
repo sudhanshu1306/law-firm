@@ -181,6 +181,7 @@ function CandidateCard(props) {
               user={props.user}
               application={props.application}
               jobId={props.jobId}
+              url={props.url}
               id={props.id}
             />
             <button onClick={handleAccept}>Accept Candidate</button>

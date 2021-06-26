@@ -8,6 +8,12 @@ function JobDescription({ url,jobTitle, companyName, location, experience, salar
   function mapSkillsDeveloped(skill){
     return <p className="type color41">{skill}</p>
   }
+  function mapArea(are){
+    return <p className="type color21">{are}</p>
+  }
+  function mapJobType(jt){
+    return <p className="type color1">{jt}</p>
+  }
   return (
     <div className="jobDescription">
       <div className="jobDetails-left">
@@ -47,7 +53,7 @@ function JobDescription({ url,jobTitle, companyName, location, experience, salar
         <div className="containerRight">
           <h2>Type of Training</h2>
           <div className="containerRight-card">
-            <p className="type color1">{jobType}</p>
+            {jobType.map(jt=> mapJobType(jt))}
           </div>
 
           <hr className="divisor" />
@@ -59,7 +65,7 @@ function JobDescription({ url,jobTitle, companyName, location, experience, salar
         <div className="containerRight">
           <h2>Areas of Law</h2>
           <div className="containerRight-card">
-            <p className="type color21">{area}</p>
+            {area.map(are=> mapArea(are))}
           </div>
         </div>
         <div className="containerRight">

@@ -15,8 +15,8 @@ const flash = require('express-flash');
 const MongoDBStore = require('connect-mongo')(session); // It will store our session id in database.
 const passport = require('passport');
 
-const url = 'mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PASS+'@cluster0-gtoy8.mongodb.net/platformDB';
-//const url = 'mongodb://localhost:27017/platform';
+//const url = 'mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PASS+'@cluster0-gtoy8.mongodb.net/platformDB';
+const url = 'mongodb://localhost:27017/platform';
 mongoose.connect(url, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true, useFindAndModify: true});
 const connection = mongoose.connection;
 connection.once('open', ()=>{
@@ -74,7 +74,7 @@ if(process.env.NODE_ENV==='development'){
 app.use(flash());
 
 app.use(express.json());
-app.use(express.static(__dirname+'/internship/build'));
+//app.use(express.static(__dirname+'/internship/build'));
 app.use("/",express.static("public"));
 app.use("/article",express.static("public"));
 app.use("/question",express.static("public"));

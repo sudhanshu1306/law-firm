@@ -7,7 +7,8 @@ import axios from "axios";
 
 const api=axios.create({
     withCredentials: true,
-    baseURL:process.env.REACT_APP_ROUTE
+    baseURL:process.env.REACT_APP_ROUTE,
+    validateStatus: () => true
   });
 
 function Dashboard() {
@@ -70,7 +71,6 @@ function Dashboard() {
   const [user,changeUser]=useState({});
   const [type,changeType]=useState(["Admin","Employer","Student","Tutor"]);
    const [url,changeUrl]=useState("");
-   const [sra,changeSra]=useState({});
    const [priority,changePriority]=useState({});
    const [defaultPriority,changeDefaultPriority]=useState([]);
    const [defaultArea,changeDefaultArea]=useState([]);
@@ -79,37 +79,43 @@ function Dashboard() {
        ...priority,[event.target.name]:event.target.value
      });
    }
-   function handleSra(event){
-     changeSra({
-       ...sra,[event.target.name]:event.target.value
-     });
-   }
+   
 
    let history=useHistory();
    var flag=false;
-  async function submitSra(event){
-    event.preventDefault();
-    console.log(sra)
-    await api.post("/editSra",sra)
-    .then(function (res) {
-        console.log(res.data);
-        if(res.data.success){
-            flag=true;
-           if(flag){
-            window.alert("Successfully updated ");
-            window.location.reload();
-           }
+   
+async function submitReference(event){
+  event.preventDefault();
+  let myForm=document.getElementById('myForm');
+      var formData=new FormData(myForm);
+  const config = {
+        headers: {
+            'content-type': 'multipart/form-data'
         }
-        else{
-          window.alert("please fill all the fields");
-        }
-      })
-      .catch(function (error) {
-  
-         window.alert("No fields can be empty");
-  
-      });
-  } 
+    };
+await api.post("/addReference",formData,config)
+.then(function (res) {
+    console.log(res.data);
+    if(res.data.success){
+        flag=true;
+       if(flag){
+        window.alert("Successfully added a reference");
+        window.location.reload();
+
+     }
+    }
+    
+    else{
+      window.alert("Success false");
+    }
+  })
+  .catch(function (error) {
+
+     window.alert(error.message);
+
+  });
+
+}
   async function submitPriority(event){
     event.preventDefault();
     console.log(priority)
@@ -140,7 +146,6 @@ function Dashboard() {
            flag=true;
           if(flag){
           changeUser(res.data.user);
-          res.data.user.sra&&changeSra(res.data.user.sra)
           if(res.data.user.areaPriority){
             options.forEach(option=>{
               if(res.data.user.areaPriority.indexOf(option.label)!==-1)
@@ -209,289 +214,62 @@ function Dashboard() {
           <MultiSelect onChange={handleOnchange} options={options} defaultValue={defaultArea}/>
         </div>
         <button className="tableButton" onClick={submitPriority}>Save</button>
-        <div className="table">
-          <table>
-            <tr>
-              <th>Competence</th>
-              <th>Have I had experience? What was it/what did I do?</th>
-              <th>How can I evidence my experience?</th>
-              <th>What did I learn?</th>
-              <th>Do I need more experience?</th>
-            </tr>
-            <tr>
-              <td className="ques">
-                A1. Act honestly and with integrity, in accordance with legal and regulatory
-                requirements and the SRA Standards and Regulations
-              </td>
-              <td>
-                <textarea
-                  placeholder="type your answer here"
-                  className="textareas"
-                  name="queA1"
-                  onChange={handleSra}
-                  id="ans5"
-                  cols="30"
-                  rows="5"
-                  defaultValue={user.sra?user.sra.queA1:""}
-                />
-              </td>
-              <td>
-                <textarea
-                  placeholder="type your answer here"
-                  className="textareas"
-                  name="queA2"
-                  onChange={handleSra}
-                  id="ans5"
-                  cols="30"
-                  rows="5"
-                  defaultValue={user.sra?user.sra.queA2:""}
-                />
-              </td>
-              <td>
-                <textarea
-                  placeholder="type your answer here"
-                  className="textareas"
-                  name="queA3"
-                  onChange={handleSra}
-                  id="ans5"
-                  cols="30"
-                  rows="5"
-                  defaultValue={user.sra?user.sra.queA3:""}
-                />
-              </td>
-              <td>
-                <textarea
-                  placeholder="type your answer here"
-                  className="textareas"
-                  name="queA4"
-                  onChange={handleSra}
-                  id="ans5"
-                  cols="30"
-                  rows="5"
-                  defaultValue={user.sra?user.sra.queA4:""}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td className="ques">
-                A2. Maintain the level of competence and legal knowledge needed to practise
-                effectively, taking into account changes in their role and/or practice context and
-                developments in the law
-              </td>
-              <td>
-                <textarea
-                  placeholder="type your answer here"
-                  className="textareas"
-                  name="queB1"
-                  onChange={handleSra}
-                  id="ans5"
-                  cols="30"
-                  rows="5"
-                  defaultValue={user.sra?user.sra.queB1:""}
-                />
-              </td>
-              <td>
-                <textarea
-                  placeholder="type your answer here"
-                  className="textareas"
-                  name="queB2"
-                  onChange={handleSra}
-                  id="ans5"
-                  cols="30"
-                  rows="5"
-                  defaultValue={user.sra?user.sra.queB2:""}
-                />
-              </td>
-              <td>
-                <textarea
-                  placeholder="type your answer here"
-                  className="textareas"
-                  name="queB3"
-                  onChange={handleSra}
-                  id="ans5"
-                  cols="30"
-                  rows="5"
-                  defaultValue={user.sra?user.sra.queB3:""}
-                />
-              </td>
-              <td>
-                <textarea
-                  placeholder="type your answer here"
-                  className="textareas"
-                  name="queB4"
-                  onChange={handleSra}
-                  id="ans5"
-                  cols="30"
-                  rows="5"
-                  defaultValue={user.sra?user.sra.queB4:""}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td className="ques">
-                A3. Work within the limits of their competence and the supervision which they need
-              </td>
-              <td>
-                <textarea
-                  placeholder="type your answer here"
-                  className="textareas"
-                  name="queC1"
-                  onChange={handleSra}
-                  id="ans5"
-                  cols="30"
-                  rows="5"
-                  defaultValue={user.sra?user.sra.queC1:""}
-                />
-              </td>
-              <td>
-                <textarea
-                  placeholder="type your answer here"
-                  className="textareas"
-                  name="queC2"
-                  onChange={handleSra}
-                  id="ans5"
-                  cols="30"
-                  rows="5"
-                  defaultValue={user.sra?user.sra.queC2:""}
-                />
-              </td>
-              <td>
-                <textarea
-                  placeholder="type your answer here"
-                  className="textareas"
-                  name="queC3"
-                  onChange={handleSra}
-                  id="ans5"
-                  cols="30"
-                  rows="5"
-                  defaultValue={user.sra?user.sra.queC3:""}
-                />
-              </td>
-              <td>
-                <textarea
-                  placeholder="type your answer here"
-                  className="textareas"
-                  name="queC4"
-                  onChange={handleSra}
-                  id="ans5"
-                  cols="30"
-                  rows="5"
-                  defaultValue={user.sra?user.sra.queC4:""}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td className="ques">
-                A4. Draw on a sufficient detailed knowledge and understanding of their field(s) of
-                work and role in order to practise effectively
-              </td>
-              <td>
-                <textarea
-                  placeholder="type your answer here"
-                  className="textareas"
-                  name="queD1"
-                  onChange={handleSra}
-                  id="ans5"
-                  cols="30"
-                  rows="5"
-                  defaultValue={user.sra?user.sra.queD1:""}
-                />
-              </td>
-              <td>
-                <textarea
-                  placeholder="type your answer here"
-                  className="textareas"
-                  name="queD2"
-                  onChange={handleSra}
-                  id="ans5"
-                  cols="30"
-                  rows="5"
-                  defaultValue={user.sra?user.sra.queD2:""}
-                />
-              </td>
-              <td>
-                <textarea
-                  placeholder="type your answer here"
-                  className="textareas"
-                  name="queD3"
-                  onChange={handleSra}
-                  id="ans5"
-                  cols="30"
-                  rows="5"
-                  defaultValue={user.sra?user.sra.queD3:""}
-                />
-              </td>
-              <td>
-                <textarea
-                  placeholder="type your answer here"
-                  className="textareas"
-                  name="queD4"
-                  onChange={handleSra}
-                  id="ans5"
-                  cols="30"
-                  rows="5"
-                  defaultValue={user.sra?user.sra.queD4:""}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td className="ques">
-                A5. Apply understanding, critical thinking and analysis to solve problems
-              </td>
-              <td>
-                <textarea
-                  placeholder="type your answer here"
-                  className="textareas"
-                  name="queE1"
-                  onChange={handleSra}
-                  id="ans5"
-                  cols="30"
-                  rows="5"
-                  defaultValue={user.sra?user.sra.queE1:""}
-                />
-              </td>
-              <td>
-                <textarea
-                  placeholder="type your answer here"
-                  className="textareas"
-                  name="queE2"
-                  onChange={handleSra}
-                  id="ans5"
-                  cols="30"
-                  rows="5"
-                  defaultValue={user.sra?user.sra.queE2:""}
-                />
-              </td>
-              <td>
-                <textarea
-                  placeholder="type your answer here"
-                  className="textareas"
-                  name="queE3"
-                  onChange={handleSra}
-                  id="ans5"
-                  cols="30"
-                  rows="5"
-                  defaultValue={user.sra?user.sra.queE3:""}
-                />
-              </td>
-              <td>
-                <textarea
-                  placeholder="type your answer here"
-                  className="textareas"
-                  name="queE4"
-                  onChange={handleSra}
-                  id="ans5"
-                  cols="30"
-                  rows="5"
-                  defaultValue={user.sra?user.sra.queE4:""}
-                />
-              </td>
-            </tr>
-          </table>
-        </div>
+        
       </div>
-      <div className="tableGroup">
-        <button className="tableButton" onClick={submitSra}>Save Changes</button>
+      <div className="reference">
+        <h3>Reference section</h3>
+        <div className="experienceSheet">
+          <p className="sheetTitle">Specialization Name</p>
+          <div className="sheetDetails">
+            <p>University/Employer name</p>
+            <p>Topic Name</p>
+            <p>Duration</p>
+          </div>
+          <div className="sheetDescp">
+            <h4>Reference</h4>
+            <img
+              src="https://www.smartsheet.com/sites/default/files/IC-Employee-Referral-Form-Template.png"
+              alt=""
+            />
+          </div>
+        </div>
+        <div className="referenceForm">
+        <form className="formModal" id="myForm">
+          <label for="university"> Add University/Employer </label>
+          <input
+            name="name"
+            type="text"
+            class="form-control"
+            id="experience"
+            placeholder="university/Employer name"
+          />
+          <label for="specialization"> Add Specialization </label>
+          <input
+            name="specialization"
+            type="text"
+            class="form-control"
+            id="specialization"
+            placeholder="Specialization name"
+          />
+          <label for="reference"> Add Reference </label>
+          <input
+            name="reference"
+            type="file"
+            class="form-control"
+            id="reference"
+            placeholder="Reference name"
+          />
+          <label for="duration"> Add Duration </label>
+          <input
+            name="duration"
+            type="text"
+            class="form-control"
+            id="duration"
+            placeholder="Duration"
+          />
+          <button onClick={submitReference}>Add Referal</button>
+          </form>
+        </div>
       </div>
     </div>
   );

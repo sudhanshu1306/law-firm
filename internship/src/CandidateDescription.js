@@ -1,12 +1,19 @@
 import React from "react";
 import "./CandidateDescription.css";
 
-function CandidateDescription({name,title,image,user,application,jobId,id}) {
+function CandidateDescription({name,title,image,url,user,application,jobId,id}) {
   function areaExperience(exp){
     return <p className="type color21">{exp}</p>
   }
   function areaInterested(intr){
     return <p className="type color31">Corporate Firm</p>
+  }
+  function mapReferences(refe){
+    return <>
+    <li>
+    {refe.name}: <a href={url+refe.document} target="_blank" style={{textDecoration:"none"}}> <button >  View </button> </a>
+  </li>
+  </>
   }
   function mapExperience(exp){
     return <> <div className="experienceDetails">
@@ -77,6 +84,21 @@ function CandidateDescription({name,title,image,user,application,jobId,id}) {
             </ul>
           </div>
           </>)} */}
+        </div>
+        <div className="candidateReferal">
+          <h3>Referrals</h3>
+          <ul>
+            {application.references.map(refe=>mapReferences(refe))}
+            {/* <li>
+              Company 2: <button>View</button>
+            </li>
+            <li>
+              Company 3: <button>View</button>
+            </li>
+            <li>
+              Company 4: <button>View</button>
+            </li> */}
+          </ul>
         </div>
       </div>
       <div className="candidateDescription-right">

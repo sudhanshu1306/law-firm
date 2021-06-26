@@ -50,6 +50,9 @@ function initRoute(app) {
           fileSize: 1024 * 1024
       }});
       const dp =uploadDp.single('pic');
+      const uploadReference=multer({storage:storage});
+      const reference =uploadReference.single('reference');
+       
 
       const uploadQa=multer({storage:storage,
         fileFilter: function (req, file, callback) {
@@ -95,7 +98,11 @@ function initRoute(app) {
     
     app.post('/api/addExperience',auth,employerController().addExperience);
 
+    app.post('/api/addExperienceEmployer',auth,employer,employerController().addExperienceEmployer);
+
     app.post('/api/jobs',auth,employer,employerController().postJobs)
+
+    app.post('/api/addReference',auth,notEmployer,reference,employerController().addReference);
 
     app.post('/api/applyJobs',auth,notEmployer,employerController().applyJob)
 

@@ -212,3 +212,53 @@
 .msl{
   border: 2px solid #383e56 !important;
 }
+
+.dropdownMenu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.dropdownMenu > label {
+  font-size: 15px;
+  font-weight: 500;
+}
+.dropdownMenu > select {
+  outline-width: 0;
+  border: 2px solid #383e56;
+  border-radius: 10px;
+  padding: 10px 20px;
+  width: 400px;
+  margin-right: 30px;
+  width: -webkit-fill-available;
+}
+.expuwant {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: -webkit-fill-available;
+}
+.colmn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.colmn > input {
+  outline-width: 0;
+  border: 2px solid #383e56;
+  border-radius: 10px;
+  padding: 10px 20px;
+  width: 400px;
+  margin-right: 30px;
+  width: 400px;
+}
+.form > h3 {
+  margin: 10px 0;
+  font-size: 20px;
+  font-weight: 400;
+}
+.multiselectWidth{
+  width: 856px !important;
+}
+.multiselectWidth1{
+  width: 884px !important;
+}

@@ -5,6 +5,7 @@ const Course = require('./course');
 const Question = require('./question');
 const Sra=require('./sra');
 const Experience=require('./experience');
+const Reference=require('./reference');
 
 const userSchema = mongoose.Schema({
     name : String,
@@ -40,5 +41,9 @@ const userSchema = mongoose.Schema({
     organizationType:String,
     locationPriority:[String],
     areaPriority:[String],
+    reference:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Reference'
+    }]
 })
 module.exports = mongoose.model('User',userSchema);

@@ -75,6 +75,12 @@ function SideBar() {
             Dashboard
           </button>
         </NavLink>
+        <NavLink className="anchor" to="/sra" activeClassName="active">
+          <button className="sideMenu">
+            <WorkOutlineOutlinedIcon className="dash" />
+            QWE Records
+          </button>
+        </NavLink>
 
         <NavLink className="anchor" to="/education" activeClassName="active">
           <button className="sideMenu">

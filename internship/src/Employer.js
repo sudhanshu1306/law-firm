@@ -28,6 +28,43 @@ function Employer() {
   const [add,changeAdd]=useState({});
   const [login,changeLogin]=useState(false);
   const [searchobj,changeSearch]=useState({});
+  const [exp,changeExperience]=useState();
+  function getExperience(event){
+    changeExperience({
+      ...exp,[event.target.name]:event.target.value
+    });
+  }
+  const [customStyle,changeCustomStyle]=useState({
+    display:"none"
+ })
+ function handleDisplay(){
+  if(customStyle.display&&customStyle.display==="none")
+  changeCustomStyle({});
+  else
+  changeCustomStyle({display:"none"});
+}
+const handleOnchange2 = (val) => {
+  setvalue(val);
+  var x=val;
+  var y=[];
+  x=x.split(",");
+  y=(options1.filter(option=> x.indexOf(option.value)!==-1));
+  y=y.map((option)=> {return option.id;});
+  changeAdd ({
+    ...add,experiencePrimary: y
+});
+};
+const handleOnchange3 = (val) => {
+  setvalue(val);
+  var x=val;
+  var y=[];
+  x=x.split(",");
+  y=(options1.filter(option=> x.indexOf(option.value)!==-1));
+  y=y.map((option)=> {return option.id;});
+  changeAdd ({
+    ...add,experienceSecondary: y
+});
+};
   function handleChange (event) {
     changeAdd ({
         ...add,[event.target.name]: event.target.value
@@ -62,6 +99,28 @@ function Employer() {
       ...add,skillsRequired: y
   });
   };
+  const handleOnchange4 = val => {
+    setvalue(val);
+    var x=val;
+    var y=[];
+    x=x.split(",");
+    y=(options2.filter(option=> x.indexOf(option.value)!==-1));
+    y=y.map((option)=> {return option.label;});
+    changeAdd ({
+      ...add,jobType: y
+  });
+  };
+  const handleOnchange5 = val => {
+    setvalue(val);
+    var x=val;
+    var y=[];
+    x=x.split(",");
+    y=(options3.filter(option=> x.indexOf(option.value)!==-1));
+    y=y.map((option)=> {return option.label;});
+    changeAdd ({
+      ...add,area: y
+  });
+  };
 
   const options = [
     { label: "Legal research skills", value: "option_1" },
@@ -85,6 +144,43 @@ function Employer() {
     { label: "Establishing and maintaining effective and professional relations with clients", value: "option_19" },
     { label: "Establishing and maintaining effective and professional relations with others", value: "option_20" },
     { label: "Team working skills", value: "option_21" }
+  ];
+  const [options1,changeOptions1]=useState([]);
+  function mapOptions1(prevExperiences){
+    prevExperiences.forEach((prev,ct)=>{
+      changeOptions1(options1=> [...options1,{label:prev.jobTitle,id:prev._id,value:"option_"+ct}])
+    })
+  }
+  const options2 = [
+    { label: "Part-time training", value: "option_1" },
+    { label: "Full-time training", value: "option_2" },
+    { label: "Volunteering", value: "option_3" },
+    { label: "Temporary", value: "option_4" },
+    { label: "Degree placement", value: "option_5" },
+    { label: "Paralegal work", value: "option_6" },
+    { label: "Remote / online", value: "option_7" },
+  ];
+  const options3 = [
+    { label: "Business and commercial affairs", value: "option_1" },
+    { label: "Dispute resolution / Civil litigation", value: "option_2" },
+    { label: "Commercial property", value: "option_3" },
+    { label: "Employment law", value: "option_4" },
+    { label: "Probate, wills and trusts", value: "option_5" },
+    { label: "Residential conveyancing", value: "option_6" },
+    { label: "Criminal Law", value: "option_7" },
+    { label: "Family Law", value: "option_8" },
+    { label: "Personal injury / Accident / Medical negligence", value: "option_9" },
+    { label: "Pensions / Insurance / Tax / financial ", value: "option_10" },
+    { label: "Regulation / Compliance / Governance", value: "option_11" },
+    { label: "Consumer Rights", value: "option_12" },
+    { label: "Immigration", value: "option_13" },
+    { label: "Welfare benefits and social security rights", value: "option_14" },
+    { label: "Intellectual property", value: "option_15" },
+    { label: "Public law ", value: "option_16" },
+    { label: "Human rights and equality legislation", value: "option_17" },
+    { label: "International Law", value: "option_18" },
+    { label: "Environmental Law", value: "option_19" },
+    { label: "Charity Law", value: "option_20" },
   ];
   let history=useHistory();
   var flag=false;
@@ -134,6 +230,7 @@ function Employer() {
            if(flag){
            getJobs(res.data.user.jobs);
            getOriginal(res.data.user.jobs);
+           mapOptions1(res.data.user.experience);
          }
       }})
       .catch(function (error) {
@@ -179,6 +276,35 @@ function Employer() {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
+  async function handleExperience(event) {
+    event.preventDefault();
+    console.log(exp)
+    await api.post("../addExperienceEmployer",exp)
+    .then(function (res) {
+        console.log(res.data);
+        if(res.data.success){
+            flag=true;
+           if(flag){
+            window.alert("You added an experience");
+            changeOptions1(options1=> [...options1,{label:res.data.experience.jobTitle,id:res.data.experience._id,value:"option_"+options1.length}])
+            changeExperience({});
+            document.getElementById("jobTitle").value="";
+            document.getElementById("description").value="";
+            }
+        }
+        else{
+          window.alert("please fill all the fields");
+        }
+      })
+      .catch(function (error) {
+  
+         window.alert("No fields can be empty");
+  
+      });
+  
+  
+  }
+  
   return (
     <div className="employer">
       <div className="employerheader">
@@ -268,7 +394,7 @@ function Employer() {
               <CloseIcon onClick={handleClose} className="close" />
             </div>
             <hr />
-            <div className="form">
+            <div className="form" style={{width:"-webkit-fill-available"}}>
               <label for="jobTitle">Job Title</label>
               <input
                 name="title"
@@ -287,7 +413,62 @@ function Employer() {
                 placeholder="company"
                 onChange={handleChange}
               />
-              <label for="job_type">Job Type</label>
+              <label for="jobtype">Job type</label>
+                <MultiSelect className="multiselectWidth1" onChange={handleOnchange4} options={options2} />
+              
+
+                <label for="areaoflaw">Area of Law</label>
+                <MultiSelect className="multiselectWidth1" onChange={handleOnchange5} options={options3} />
+                
+              {/* <h3>Experience candidate must have</h3>
+              <hr />
+              <div className="expuwant">
+                <div className="colmn">
+                  <label for="experience">Experience </label>
+                  <input
+                    name="experience"
+                    type="text"
+                    class="form-control"
+                    id="experience"
+                    placeholder="experience needed"
+                  />
+                </div>
+                <div className="colmn">
+                  <label for="experience">Duration </label>
+                  <input
+                    name="experience"
+                    type="text"
+                    class="form-control"
+                    id="experience"
+                    placeholder="time period needed"
+                  />
+                </div>
+              </div>
+              <h3>Secondary experience</h3>
+              <hr />
+              <div className="expuwant">
+                <div className="colmn">
+                  <label for="experience">Experience </label>
+                  <input
+                    name="experience"
+                    type="text"
+                    class="form-control"
+                    id="experience"
+                    placeholder="experience needed"
+                  />
+                </div>
+                <div className="colmn">
+                  <label for="experience">Duration </label>
+                  <input
+                    name="experience"
+                    type="text"
+                    class="form-control"
+                    id="experience"
+                    placeholder="time period needed"
+                  />
+                </div>
+              </div> */}
+              {/* <label for="job_type">Job Type</label>
               <input
                 name="jobType"
                 type="text"
@@ -304,16 +485,52 @@ function Employer() {
                 id="area"
                 placeholder="area of law"
                 onChange={handleChange}
-              />
-              <label for="experience">Experience nedeed</label>
-              <input
-                name="experience"
-                type="text"
-                class="form-control"
-                id="experience"
-                placeholder="experience needed"
-                onChange={handleChange}
-              />
+              /> */}
+              <label for="experience">Experience nedeed: <span style={{color:"blue",cursor:"pointer"}} onClick={handleDisplay}>Add new Experience </span></label>
+              <MultiSelect className="multiselectWidth1" onChange={handleOnchange2} options={options1} name="experiencePrimary"/>
+              <label for="experience">Secondary Experience(Nice to have experience)</label>
+              <MultiSelect className="multiselectWidth1"  onChange={handleOnchange3} options={options1} name="experienceSecondary"/>
+              <div className="addExperience"  style={customStyle}>
+                <h2>Add Experience</h2>
+                <div className="experienceSheet">
+                  <p className="sheetTitle">Experience Title</p>
+                  {/* <div className="sheetDetails">
+                    <p>Duration(From-To)</p>
+                  </div> */}
+                  
+                  <div className="sheetDescp" >
+                    <h4>Experience Description</h4>
+                    <p>
+                      {" "}
+                      Some of these ideas will go on to be potential solutions to your design
+                      challenge; some will end up on the reject pile. At this stage, the focus is on
+                      quantity of ideas rather than quality. The main aim of an ideation session is
+                      to uncover and explore new angles and avenues—to think outside the box. For
+                      the sake of innovation and creativity, it is essential that the ideation phase
+                      be a “judgement-free zone”.
+                    </p>
+                  </div>
+                </div>
+                <div className="singleExp" >
+                  <label for="jobtitle">Experience Title</label>
+                  <input type="text" name="jobTitle" id="jobTitle" placeholder="Experience Title" onChange={getExperience}/>
+                  {/* <label for="timeperiod">Duration</label>
+                  <input type="text" name="duration" id="duration" placeholder="Duration" onChange={getExperience} /> */}
+                  <label for="Job_description">Experience description(optional)</label>
+                  <textarea
+                    placeholder="type your experience description here"
+                    name="description"
+                    id="description"
+                    cols="30"
+                    rows="5"
+                    onChange={getExperience}
+                  />
+                </div>
+                <button className="addexpe" onClick={handleExperience}> Add Experience</button>
+              </div>
+              <label for="experience">Experience(in Years)</label>
+              <input name="experience" type="text" onChange={handleChange} class="form-control" id="experience" placeholder="experience" />
+              
               <label for="venue">Venue</label>
               <input name="venue" type="text" onChange={handleChange} class="form-control" id="venue" placeholder="Venue" />
               <label for="salary">Salary</label>
@@ -327,11 +544,11 @@ function Employer() {
               />
               <div className="addskill">
                 <p>Skills that will be developed on the job:</p>
-                <MultiSelect className="formWidth" onChange={handleOnchange} options={options} name="skillsDeveloped" />
+                <MultiSelect className="multiselectWidth1" onChange={handleOnchange} options={options} name="skillsDeveloped" />
               </div>
               <div className="addskill">
                 <p>Skills that are required to apply:</p>
-                <MultiSelect className="formWidth" onChange={handleOnchange1} options={options} name="skillsRequired" />
+                <MultiSelect className="multiselectWidth1"  onChange={handleOnchange1} options={options} name="skillsRequired" />
               </div>
 
               <label for="jobTags">About job</label>

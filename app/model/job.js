@@ -8,8 +8,8 @@ const jobSchema = mongoose.Schema({
     salary:String,
     venue:String,
     info : String,
-    jobType:String,
-    area:String,
+    jobType:[String],
+    area:[String],
     approved : {type : Number, default : 0},
     employer : {type : mongoose.Schema.Types.ObjectId,
         ref : 'User'
@@ -23,6 +23,14 @@ const jobSchema = mongoose.Schema({
   accepted : [{
     type :  mongoose.Schema.Types.ObjectId,
     ref : 'Application'
+}],
+experiencePrimary : [{
+    type :  mongoose.Schema.Types.ObjectId,
+    ref : 'Experience'
+}],
+experienceSecondary : [{
+    type :  mongoose.Schema.Types.ObjectId,
+    ref : 'Experience'
 }]
 },{timestamps:true})
 module.exports = mongoose.model('Job',jobSchema);

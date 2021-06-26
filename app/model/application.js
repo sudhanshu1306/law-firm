@@ -19,6 +19,10 @@ const applicationSchema = mongoose.Schema({
     experiences:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Experience'
+    }],
+    references:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Reference'
     }]
 })
 module.exports = mongoose.model('Application',applicationSchema);

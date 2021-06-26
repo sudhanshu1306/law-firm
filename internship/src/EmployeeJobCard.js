@@ -18,7 +18,7 @@ const api=axios.create({
     baseURL:process.env.REACT_APP_ROUTE+'/applyJobs'
   });
 
-function EmployeeJobCard({ url, jobTitle, companyName, location, experience, salaries, jobTags ,id,jobType,area,organizationType,skillsRequired,skillsDeveloped }) {
+function EmployeeJobCard({ url, jobTitle, companyName, location, experience, salaries, jobTags ,id,jobType,area,organizationType,skillsRequired,skillsDeveloped ,experiencePrimary,experienceSecondary }) {
   let history=useHistory();
    var flag=false;
    const [user,changeUser]=useState([]);
@@ -44,31 +44,24 @@ function EmployeeJobCard({ url, jobTitle, companyName, location, experience, sal
           if(flag){
           changeUser(res.data.user);
           var appli=res.data.application;
+          var copyDefaultFields=null,copyDefaultInterested=[],copyDefaultExperience=[];
           if(appli.length!=0){
             changeDefaultFields(appli[appli.length-1]);
+            copyDefaultFields=appli[appli.length-1]
             options.forEach(option=>{
               if(appli[appli.length-1].areaInterested.indexOf(option.label)!==-1)
-              changeDefaultInterested(prev=> [...prev,option]);
-              if(appli[appli.length-1].areaExperience.indexOf(option.label)!==-1)
+              {changeDefaultInterested(prev=> [...prev,option]);copyDefaultInterested.push(option)}
+              if(appli[appli.length-1].areaExperience.indexOf(option.label)!==-1){
               changeDefaultExperience(prev=> [...prev,option]);
+              copyDefaultExperience.push(option);
+            }
             })
             changeApplication ({
-              ...application,areaExperience: defaultExperienced
+              ...application,areaExperience: appli[appli.length-1].areaExperience,areaInterested: appli[appli.length-1].areaInterested,firstName: appli[appli.length-1].firstName,lastName: appli[appli.length-1].lastName,description: appli[appli.length-1].description
           });
-          changeApplication ({
-            ...application,areaExperience: defaultInterested
-        });
-        changeApplication ({
-          ...application,firstName: defaultFields.firstName
-      });
-      changeApplication ({
-        ...application,lastName: defaultFields.lastName
-    });
-    changeApplication ({
-      ...application,description: defaultFields.description
-  });
           }
           mapOptions1(res.data.user.experience);
+          mapOptions2(res.data.user.reference);
         }}
           else{
            console.log(res.data);
@@ -84,6 +77,25 @@ function EmployeeJobCard({ url, jobTitle, companyName, location, experience, sal
    },[]);
   const [open, setOpen] = React.useState(false);
   const [open1, setOpen1] = React.useState(false);
+  
+  const [customStyle,changeCustomStyle]=useState({
+    display:"none"
+ })
+ const [customStyleReference,changeCustomStyleReference]=useState({
+  display:"none"
+})
+  function handleDisplay(){
+    if(customStyle.display&&customStyle.display==="none")
+    changeCustomStyle({});
+    else
+    changeCustomStyle({display:"none"});
+  }
+  function handleDisplayReference(){
+    if(customStyleReference.display&&customStyleReference.display==="none")
+    changeCustomStyleReference({});
+    else
+    changeCustomStyleReference({display:"none"});
+  }
   const handleOpen = () => {
     setOpen(true);
   };
@@ -132,6 +144,17 @@ function EmployeeJobCard({ url, jobTitle, companyName, location, experience, sal
       ...application,experiences: y
   });
   };
+  const handleOnchange3 = (val) => {
+    setvalue(val);
+    var x=val;
+    var y=[];
+    x=x.split(",");
+    y=(options2.filter(option=> x.indexOf(option.value)!==-1));
+    y=y.map((option)=> {return option.id;});
+    changeApplication ({
+      ...application,reference: y
+  });
+  };
   const options = [
     { label: "Business and commercial affairs", value: "option_1" },
     { label: "Dispute resolution / Civil litigation", value: "option_2" },
@@ -158,6 +181,12 @@ function EmployeeJobCard({ url, jobTitle, companyName, location, experience, sal
   function mapOptions1(prevExperiences){
     prevExperiences.forEach((prev,ct)=>{
       changeOptions1(options1=> [...options1,{label:prev.jobTitle,id:prev._id,value:"option_"+ct}])
+    })
+  }
+  const [options2,changeOptions2]=useState([]);
+  function mapOptions2(prevOptions){
+    prevOptions.forEach((prev,ct)=>{
+      changeOptions2(options2=> [...options2,{label:prev.specialization,id:prev._id,value:"option_"+ct}])
     })
   }
   async function handleSubmit(event) {
@@ -217,31 +246,63 @@ function EmployeeJobCard({ url, jobTitle, companyName, location, experience, sal
   
   }
   
+  async function submitReference(event){
+    event.preventDefault();
+    let myForm=document.getElementById('myForm');
+        var formData=new FormData(myForm);
+    const config = {
+          headers: {
+              'content-type': 'multipart/form-data'
+          }
+      };
+  await api.post("../addReference",formData,config)
+  .then(function (res) {
+      console.log(res.data);
+      if(res.data.success){
+          flag=true;
+         if(flag){
+          window.alert("Successfully added a reference");
+          changeOptions2(options2=> [...options2,{label:res.data.reference.specialization,id:res.data.reference._id,value:"option_"+options2.length}])
+            document.getElementById("myForm").reset();
   
+       }
+      }
+      
+      else{
+        window.alert("Success false");
+      }
+    })
+    .catch(function (error) {
+  
+       window.alert(error.message);
+  
+    });
+  
+  }
   return (
     <div className="employeeJobCard">
       <div className="jobCardContent">
         <h3>{jobTitle} </h3>
         <h4> {companyName} </h4>
         <div className="organizationDetails">
-          <p>Area of law: {area}</p>
-          <p>Job Type: {jobType}</p>
+          <p className="aolpara"> <span>Area of law:</span>  {area.join()}</p>
+          <p> <span>Job Type: </span> {jobType.join()}</p>
         </div>
         <div className="employeeJobCard-top">
           <p>
             <LocationOnOutlinedIcon className="location1" /> {location}
           </p>
 
-          <p>
+          {/* <p>
             <WorkOutlineOutlinedIcon className="work1" /> {experience} Years
-          </p>
+          </p> */}
           <p>
             <MoneyOutlinedIcon className="money1" /> {salaries} INR Per Annum
           </p>
         </div>
-        <div className="descriptionContent1">
+        {/* <div className="descriptionContent1">
           <p>{jobTags}</p>
-        </div>
+        </div> */}
       </div>
 
       <div className="employeeJobCard-bottom">
@@ -323,10 +384,71 @@ function EmployeeJobCard({ url, jobTitle, companyName, location, experience, sal
                 <MultiSelect onChange={handleOnchange1} options={options} name="areaInterested" defaultValue={defaultInterested}/>
               </div>
               <div className="addskill">
+                <p>Select reference : OR <span style={{color:"blue",cursor:"pointer"}} onClick={handleDisplayReference}> Add new Reference </span></p>
+                <MultiSelect onChange={handleOnchange3} options={options2} name="reference"/>
+              </div>
+              <div className="reference" style={customStyleReference}>
+        <h3>Reference section</h3>
+        <div className="experienceSheet">
+          <p className="sheetTitle">Specialization Name</p>
+          <div className="sheetDetails">
+            <p>University/Employer name</p>
+            <p>Topic Name</p>
+            <p>Duration</p>
+          </div>
+          <div className="sheetDescp">
+            <h4>Reference</h4>
+            <img
+              src="https://www.smartsheet.com/sites/default/files/IC-Employee-Referral-Form-Template.png"
+              alt=""
+            />
+          </div>
+        </div>
+        <div className="referenceForm">
+        <form className="formModal" id="myForm">
+          <label for="university"> Add University/Employer </label>
+          <input
+            name="name"
+            type="text"
+            class="form-control"
+            id="experience"
+            placeholder="university/Employer name"
+          />
+          <label for="specialization"> Add Specialization </label>
+          <input
+            name="specialization"
+            type="text"
+            class="form-control"
+            id="specialization"
+            placeholder="Specialization name"
+          />
+          <label for="reference"> Add Reference </label>
+          <input
+            name="reference"
+            type="file"
+            class="form-control"
+            id="reference"
+            placeholder="Reference name"
+          />
+          <label for="duration"> Add Duration </label>
+          <input
+            name="duration"
+            type="text"
+            class="form-control"
+            id="duration"
+            placeholder="Duration"
+          />
+          <button onClick={submitReference}>Add Referal</button>
+          </form>
+        </div>
+      </div>
+              <div className="addskill">
                 <p>Select previous experience :</p>
                 <MultiSelect onChange={handleOnchange2} options={options1} name="experience"/>
               </div>
-              <div className="addExperience">
+              
+              <button className="newExpr" onClick={handleDisplay}>Add new Experience</button>
+              <div className="addExperience"  style={customStyle}>
                 <h2>Add Experience</h2>
                 <div className="experienceSheet">
                   <p className="sheetTitle">Job Title</p>
@@ -335,7 +457,8 @@ function EmployeeJobCard({ url, jobTitle, companyName, location, experience, sal
                     <p>Location</p>
                     <p>Duration</p>
                   </div>
-                  <div className="sheetDescp">
+                  
+                  <div className="sheetDescp" >
                     <h4>Job Description</h4>
                     <p>
                       {" "}
@@ -348,8 +471,7 @@ function EmployeeJobCard({ url, jobTitle, companyName, location, experience, sal
                     </p>
                   </div>
                 </div>
-
-                <div className="singleExp">
+                <div className="singleExp" >
                   <label for="jobtitle">Job Title</label>
                   <input type="text" name="jobTitle" id="jobTitle" placeholder="Job Title" onChange={getExperience}/>
                   <label for="comapanyname">Company name</label>
@@ -377,7 +499,7 @@ function EmployeeJobCard({ url, jobTitle, companyName, location, experience, sal
                 </div>
                 <button className="addexpe" onClick={handleExperience}> Add Experience</button>
               </div>
-              
+              <hr/>
               <button className="addexpe" onClick={handleSubmit}>Apply</button>
               
             </div>

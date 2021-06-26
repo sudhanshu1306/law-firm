@@ -1,0 +1,67 @@
+.secondHeader {
+  height: 10vh;
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 15px;
+  background-color: white;
+  width: -webkit-fill-available;
+  position: sticky;
+  top: 0px;
+  z-index: 999;
+  transition: all 800ms ease;
+  box-shadow: 0 0px 20px #e4e4e4;
+}
+.secondHeaderMiddle {
+  display: flex;
+  align-items: center;
+  width: 400px;
+  justify-content: space-evenly;
+}
+.searchOption {
+  display: flex;
+  align-items: center;
+}
+.input1 {
+  border: 2px solid gray;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-left: 20px;
+  width: 200px;
+}
+.headerOption {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.jobIcon {
+  font-size: 1.3rem !important;
+  color: rgb(77, 76, 76) !important;
+}
+.headerOption > p {
+  font-size: 12px;
+}
+.link9 {
+  text-decoration: none !important;
+  color: rgb(77, 76, 76) !important;
+  border-bottom: 2px solid transparent;
+}
+.link9:hover {
+  color: blue !important;
+  border-bottom: 2px solid blue !important;
+}
+.headerOption :hover {
+  color: blue !important;
+}
+.active1 .headerOption {
+  color: blue !important;
+  border-bottom: 2px solid blue;
+}
+.jobIcon1 {
+  font-size: 30px !important;
+  color: rgb(77, 76, 76);
+  margin: 0px 12px;
+  cursor: pointer;
+}

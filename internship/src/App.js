@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import Jobs from "./Jobs";
+import Sra from "./Sra";
 import Login from "./Login";
 import Signup from "./Signup";
 import Articles from "./Articles";
@@ -39,6 +40,12 @@ function App() {
             <div className="studentAccount">
               <SideBar />
               <MyArticles />
+            </div>
+          </Route>
+          <Route path="/sra">
+            <div className="studentAccount">
+              <SideBar />
+              <Sra />
             </div>
           </Route>
           <Route path="/skills">
