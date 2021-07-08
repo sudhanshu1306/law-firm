@@ -1,7 +1,5 @@
 .header {
-  border-radius: 10px;
-  margin: 10px;
-  height: 8vh;
+  height: 12vh;
   display: flex;
   box-sizing: border-box;
   flex-direction: row;
@@ -11,12 +9,13 @@
   background-color: transparent;
   width: -webkit-fill-available;
   position: sticky;
-  top: 10px;
+  top: 0;
   z-index: 999;
   transition: all 800ms ease;
 }
 .header.active2 {
-  background-color: #ecf5e9 !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 2px 15px 2px #e0e0e0;
 }
 .link2 {
   color: #282846 !important;
@@ -27,9 +26,9 @@
   font-weight: 200 !important;
 }
 .logo {
-  color: #282846;
-  font-size: 15px;
-  font-weight: 200 !important;
+  color: #0c3058;
+  font-size: 22px;
+  font-weight: 500 !important;
   cursor: pointer;
 }
 .headerMiddle {
@@ -45,10 +44,10 @@
   text-decoration: none;
   text-align: center;
   width: 200px;
-  border-bottom: 3px solid rgba(255, 255, 255, 0);
+  border-bottom: 3px solid #ff004c00;
 }
 .menuItems {
-  color: #282846;
+  color: #ff004b;
   font-size: 15px;
   font-weight: 500 !important;
   cursor: pointer;
@@ -77,14 +76,14 @@
   text-decoration: none;
   text-align: center;
   width: 200px;
-  border-bottom: 3px solid rgb(49, 49, 49);
+  border-bottom: 3px solid #ff004b;
 }
 
 .active1 {
   color: rgb(48, 0, 48) !important;
   border-radius: 0;
   text-decoration: none !important;
-  border-bottom: 3px solid rgb(49, 49, 49);
+  border-bottom: 3px solid #ff004b;
   transition: all 800ms ease-in-out;
 }
 .NavLink2 {

@@ -18,10 +18,7 @@ function JobDescription({ url,jobTitle, companyName, location, experience, salar
     <div className="jobDescription">
       <div className="jobDetails-left">
         <div className="headerTitle">
-          <img
-            src={url}
-            alt=""
-          />
+          <img src={url} alt="" />
           <div className="headerTitle-main">
             <h1>{jobTitle}</h1>
             <p>{companyName}</p>
@@ -29,9 +26,7 @@ function JobDescription({ url,jobTitle, companyName, location, experience, salar
         </div>
 
         <div className="decriptionofJob">
-          <p>
-           {jobTags}
-          </p>
+          <p>{jobTags}</p>
         </div>
         <div className="aboutCompany">
           <h2>About company</h2>
@@ -52,9 +47,7 @@ function JobDescription({ url,jobTitle, companyName, location, experience, salar
       <div className="jobDetails-right">
         <div className="containerRight">
           <h2>Type of Training</h2>
-          <div className="containerRight-card">
-            {jobType.map(jt=> mapJobType(jt))}
-          </div>
+          <div className="containerRight-card">{jobType.map(jt => mapJobType(jt))}</div>
 
           <hr className="divisor" />
           <h2>Type of organization</h2>
@@ -64,20 +57,23 @@ function JobDescription({ url,jobTitle, companyName, location, experience, salar
         </div>
         <div className="containerRight">
           <h2>Areas of Law</h2>
-          <div className="containerRight-card">
-            {area.map(are=> mapArea(are))}
-          </div>
+          <div className="containerRight-card">{area.map(are => mapArea(are))}</div>
         </div>
         <div className="containerRight">
           <h2>Skills</h2>
           <div className="containerRight-card">
-          {skillsDeveloped.map(skill=> mapSkillsDeveloped(skill))}
+            {skillsDeveloped.map(skill => mapSkillsDeveloped(skill))}
           </div>
 
           <hr className="divisor" />
           <h2>Skills that are required to apply</h2>
+          <h3>Primary Skills</h3>
           <div className="containerRight-card">
-          {skillsRequired.map(skill=> mapSkillsRequired(skill))}
+            {skillsRequired.map(skill => mapSkillsRequired(skill))}
+          </div>
+          <h3>Secondary Skills</h3>
+          <div className="containerRight-card">
+            {skillsRequired.map(skill => mapSkillsRequired(skill))}
           </div>
         </div>
       </div>

@@ -1,0 +1,118 @@
+.jobSection {
+  display: flex;
+  align-items: baseline;
+  width: -webkit-fill-available;
+}
+
+.jobSection-right {
+  flex: 1;
+}
+.searchFilter {
+  margin: 20px 40px;
+  overflow: auto;
+  border: 1px solid #eee;
+  width: 316px;
+  overflow-y: auto;
+  border-radius: 6px;
+  padding: 23px;
+  background: #fff;
+  height: 70vh;
+}
+.searchFilter > h3 {
+  width: 40px;
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  color: #8a8a8a;
+  background: #fff;
+}
+.searchFilter > h2 {
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.orSection {
+  position: relative;
+  top: 16px;
+}
+.multiselectInput {
+  width: -webkit-fill-available !important;
+  outline-width: 0 !important;
+  margin: 10px 0;
+}
+.checkItem {
+  display: flex;
+  align-items: center;
+  margin: 10px auto;
+}
+.checkItem > input {
+  width: 16px;
+  height: 16px;
+  margin-right: 15px;
+  color: #ff004b !important;
+}
+.checkbox {
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  opacity: 0;
+  top: 2px;
+  left: 0;
+  margin: 0;
+}
+.searchArea {
+  width: -webkit-fill-available;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid gray;
+  overflow: hidden;
+  background-color: #ff004b;
+  margin-top: 10px;
+}
+.searchArea > input {
+  flex: 1;
+  outline-width: 0;
+  border: none !important;
+  font-size: 15px;
+  padding: 8px;
+}
+.searchIcon {
+  height: 30px;
+  width: 30px;
+  color: white;
+  padding: 0 10px;
+}
+.searchFilter > input {
+  width: -webkit-fill-available;
+  border: 1px solid #003355 !important;
+  padding: 7px;
+  font-size: 15px;
+  border-radius: 9px;
+  margin: 12px 0;
+}
+.inputLabel {
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  color: #333 !important;
+  margin-bottom: 10px !important;
+}
+.msl-chip {
+  background: #ff004b !important;
+  color: white !important;
+  z-index: -1 !important;
+}
+.searchFilter > button {
+  background-color: #ff004b;
+  color: white;
+  border: none;
+  outline-width: 0;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 10px 36px;
+  margin-top: 26px;
+  cursor: pointer;
+  margin: 20px 22%;
+}

@@ -107,7 +107,7 @@ function Header() {
     <div className={header ? "header active2" : "header"}>
       <div className="headerLeft">
         <Link className="link" to="/">
-          <h2 className="logo">QWE</h2>
+          <h2 className="logo">LawQWE</h2>
         </Link>
       </div>
       <div className="headerMiddle">

@@ -1,0 +1,105 @@
+.qweCard {
+  background: #fff;
+  padding: 23px;
+  margin-bottom: 24px;
+  border: 1px solid #eee;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 8%);
+  border-radius: 6px;
+}
+.areaOfLaw {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  width: -webkit-fill-available;
+}
+.areaOfLaw > p {
+  margin: 5px;
+  padding: 6px 12px;
+  background: #f8f8f8;
+  border-radius: 14px;
+  font-size: 14px;
+  color: #666;
+  line-height: 16px;
+  margin-right: 8px;
+  width: fit-content;
+}
+.qweCard-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cardHeader-title {
+  display: flex;
+  flex-wrap: wrap;
+}
+.cardHeader-title > h3 {
+  color: #484848;
+  font-weight: 600;
+  line-height: 1.33;
+}
+.companyName {
+  font-size: 14px;
+  color: #8a8a8a;
+  font-weight: 600;
+  line-height: 1.43;
+  margin-bottom: 24px;
+}
+.jobTypes {
+  line-height: 16px;
+  display: flex;
+  margin-bottom: 24px;
+  line-height: 22px;
+  color: #333;
+  font-weight: 400;
+}
+.qweSection {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.qweSection > p {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  font-size: 13px !important;
+}
+.qweIcon {
+  font-size: 15px !important;
+  margin-right: 5px;
+}
+.qwe-Section > p {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  display: flex;
+  font-weight: 500;
+}
+.qweCard-Bottom {
+  width: -webkit-fill-available;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+.qweCard-Bottom > button {
+  background-color: transparent;
+  border: none;
+  color: #ff2047;
+  font-size: 15px;
+  font-weight: 600;
+  margin-left: 25px;
+  cursor: pointer;
+}
+.companyLogo > img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+.qweCard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -20,6 +20,12 @@
   font-weight: 400;
   text-align: center;
 }
+.containerRight > h3 {
+  font-size: 15px;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: underline;
+}
 .headerTitle {
   display: flex;
   align-items: center;
@@ -86,4 +92,6 @@
 .divisor {
   color: darkslategray !important;
   margin: 20px 0;
+}
+.divisor > h3 {
 }

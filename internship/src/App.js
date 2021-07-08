@@ -24,6 +24,7 @@ import SideBar from "./SideBar";
 import Skills from "./Skills";
 import MyArticles from "./MyArticles";
 import MyJobs from "./MyJobs";
+import JobSection from "./JobSection";
 
 function App() {
   return (
@@ -115,7 +116,7 @@ function App() {
           </Route>
           <Route path="/jobs">
             <Header />
-            <Jobs />
+            <JobSection />
             <Footer />
           </Route>
           <Route path="/login">
@@ -133,6 +134,6 @@ function App() {
       </div>
     </Router>
   );
-}
+  }
 
 export default App;

@@ -12,7 +12,6 @@ import Fade from "@material-ui/core/Fade";
 import axios from "axios";
 import JobDescription from "./JobDescription"
 
-
 const api=axios.create({
     withCredentials: true,
     baseURL:process.env.REACT_APP_ROUTE+'/applyJobs'
