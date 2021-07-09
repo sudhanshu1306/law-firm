@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.9d230d79.chunk.css",
+    "main.css": "/static/css/main.4e70c3ff.chunk.css",
     "main.js": "/static/js/main.6a716b8f.chunk.js",
     "main.js.map": "/static/js/main.6a716b8f.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.b681f178.js",
@@ -12,7 +12,7 @@
     "static/js/3.16810668.chunk.js.map": "/static/js/3.16810668.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.04771b91.chunk.css.map": "/static/css/2.04771b91.chunk.css.map",
-    "static/css/main.9d230d79.chunk.css.map": "/static/css/main.9d230d79.chunk.css.map",
+    "static/css/main.4e70c3ff.chunk.css.map": "/static/css/main.4e70c3ff.chunk.css.map",
     "static/js/2.2e68a667.chunk.js.LICENSE.txt": "/static/js/2.2e68a667.chunk.js.LICENSE.txt",
     "static/media/Body.css": "/static/media/lawyer.c2752cfe.png",
     "static/media/Signup.css": "/static/media/41464-student-with-books.fb0dccce.gif",
@@ -23,7 +23,7 @@
     "static/js/runtime-main.b681f178.js",
     "static/css/2.04771b91.chunk.css",
     "static/js/2.2e68a667.chunk.js",
-    "static/css/main.9d230d79.chunk.css",
+    "static/css/main.4e70c3ff.chunk.css",
     "static/js/main.6a716b8f.chunk.js"
   ]
 }

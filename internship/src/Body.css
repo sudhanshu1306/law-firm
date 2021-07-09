@@ -13,12 +13,13 @@
 }
 .bodyTop-Left {
   flex: 1;
-  background-image: url("./assets/Landingpage-Image1.jpg");
-  background-size: cover;
+  background-image: url("./assets/Landingpage-Image3.jpg");
+  background-size: contain;
   background-position: center;
+  background-repeat: no-repeat;
   height: 70vh;
   position: relative;
-  left: -225px;
+  left: -250px;
 }
 .bodyTop-Right {
   flex: 0.5;
